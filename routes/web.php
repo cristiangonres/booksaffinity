@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Book;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+Route::get('/testdb', function () {
+    $books = Book::all();
+    foreach($books as $book){
+        echo $book->title . " - " . $book->publi_date . "<br>";
+    }
+
 });
