@@ -15,7 +15,7 @@ use App\Models\Book;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 
@@ -26,3 +26,64 @@ Route::get('/testdb', function () {
     }
 
 });
+Route::get('/home', function () {
+    return view('home');
+});
+
+Route::get('/author', function () {
+    return view('author');
+});
+
+Route::get('/authormanage', function () {
+    return view('authormanage');
+});
+
+Route::get('/book', function () {
+    return view('book');
+});
+
+Route::get('/bookmanage', function () {
+    return view('bookmanage');
+});
+
+Route::get('/editorial', function () {
+    return view('editorial');
+});
+
+Route::get('/editorialmanage', function () {
+    return view('editorialmanage');
+});
+
+Route::get('/filteredlist', function () {
+    return view('filteredlist');
+});
+
+Route::get('/moderatexx', function () {
+    return view('moderatexx');
+});
+
+Route::get('/signup', function () {
+    return view('signup');
+});
+
+/*
+Route::get('/', [RoutingController::class, 'home']);
+Route::get('/home', [RoutingController::class, 'home']);
+
+Route::get('/author', [RoutingController::class, 'author']);
+Route::get('/authormanage', [¿RoutingController?::class, 'authormanage']);
+
+Route::get('/book', [RoutingController::class, 'book']);
+Route::get('/bookmanage', [¿RoutingController?::class, 'bookmanage']);
+
+Route::get('/editorial', [RoutingController::class, 'editorial']);
+Route::get('/editorialmanage', [¿RoutingController?::class, 'editorialmanage']);
+
+Route::get('/filteredlist', [RoutingController::class, 'filteredlist']);
+
+Route::get('/moderatexx', [RoutingController::class, 'moderatexx']);
+
+Route::get('/signup', [RoutingController::class, 'signup']);
+
+
+*/
