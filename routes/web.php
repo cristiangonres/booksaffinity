@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoutingController;
 use App\Models\Book;
 
 /*
@@ -14,9 +15,23 @@ use App\Models\Book;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
+
+
     return view('home');
+        $books = Book::all();
+    foreach($books as $book){
+        echo $book->title . " - " . $book->publi_date . "<br>";
+    }
 });
+
+Route::get('/home', function () {
+    return view('home');
+});*/
+
+
+Route::get('/', [RoutingController::class, 'home']);
+Route::get('/home', [RoutingController::class, 'home']);
 
 
 Route::get('/testdb', function () {
@@ -27,9 +42,7 @@ Route::get('/testdb', function () {
 
 });
 
-Route::get('/home', function () {
-    return view('home');
-});
+
 
 Route::get('/author', function () {
     return view('author');
