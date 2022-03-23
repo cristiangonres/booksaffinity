@@ -62,7 +62,7 @@
     </nav>
 
     <div class="row">
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+    <div class="d-flex col-md-3 flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
       <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
       <span class="fs-4">Sidebar</span>
@@ -146,11 +146,12 @@
       </ul>
     </div>
   </div>
+
+  <div class="col-md-9 bg-opacity-75">
     
 
-
         @yield('content')
-
+  </div>
 </div>
 
     <div class="col-md-1 bg-opacity-75" style="background-color: #4e2942;">
