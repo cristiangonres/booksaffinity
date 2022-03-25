@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoutingController;
 use App\Models\Book;
+use App\Models\Country;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,12 @@ Route::get('/home', [RoutingController::class, 'home']);
 
 
 Route::get('/testdb', function () {
+
+    $country = Country::all();
+    foreach($country as $cuntry){
+        echo $cuntry->country_name .  "<br>";
+    }
+
     $books = Book::all();
     foreach($books as $book){
         echo $book->title . " - " . $book->publi_date . "<br>";
