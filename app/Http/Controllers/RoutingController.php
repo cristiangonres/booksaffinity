@@ -4,21 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Country;
 
 class RoutingController extends Controller
 {
-   function home(){
-      $id= array();
-      $nombre= array();
-      $categoria= array();
-      $precio= array();
+    function home()
+    {
+        $id = array();
+        $nombre = array();
+        $categoria = array();
+        $precio = array();
 
-      $books = Book::all();
-      /*foreach($books as $book){
+        $books = Book::all();
+        $countries = Country::all();
+
+        return view('home', compact('books', 'countries'));
+
+        /*foreach($books as $book){
           echo $book->title . " - " . $book->publi_date . "<br>";
-      }*/
+        }*/
 
-      /*if(isset($_POST['filter'])){
+        /*if(isset($_POST['filter'])){
 
          if(isset($_POST['ordering']) && $_POST['categoria']!="" ){
 
@@ -50,16 +56,12 @@ class RoutingController extends Controller
          $products = products::all();
       }*/
 
-      
-      /*foreach($products as $product){
+
+        /*foreach($products as $product){
          array_push($id, $product->id);
          array_push($nombre, $product->nombre_producto);
          array_push($categoria, $product->categoria);
          array_push($precio, $product->precio);
       }*/
-
-       return view('home', compact('books'));
-
     }
-
 }

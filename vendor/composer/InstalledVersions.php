@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'b52a1b5e654d0f9eba75f24a4b80ac751df19dc2',
+    'reference' => 'f995c24712f9d74d4844d09bd4b78adb2ed4c411',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -460,7 +460,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'b52a1b5e654d0f9eba75f24a4b80ac751df19dc2',
+      'reference' => 'f995c24712f9d74d4844d09bd4b78adb2ed4c411',
     ),
     'laravel/sail' => 
     array (
@@ -497,6 +497,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '1e2d500585a4e546346fadd3adc6f9c1a97e15f4',
+    ),
+    'laravelcollective/html' => 
+    array (
+      'pretty_version' => 'v6.3.0',
+      'version' => '6.3.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '78c3cb516ac9e6d3d76cad9191f81d217302dea6',
     ),
     'league/commonmark' => 
     array (
@@ -881,18 +890,18 @@ private static $installed = array (
     ),
     'ramsey/uuid' => 
     array (
-      'pretty_version' => '4.2.3',
-      'version' => '4.2.3.0',
+      'pretty_version' => '4.3.0',
+      'version' => '4.3.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'fc9bb7fb5388691fd7373cd44dcb4d63bbcf24df',
+      'reference' => '8ced2afadd9ce455e2d5919d27c57e344bae4a09',
     ),
     'rhumsaa/uuid' => 
     array (
       'replaced' => 
       array (
-        0 => '4.2.3',
+        0 => '4.3.0',
       ),
     ),
     'sebastian/cli-parser' => 

@@ -28,7 +28,7 @@ $admin=true;
                           <li>Titulo: <a href="#" style="text-decoration:none" class="link-dark">'.$book->title.'</a></li>
                           <li>Autor: <a href="#" style="text-decoration:none" class="link-dark">'.$book->author_id.'</a></li></li>
                           <li>Fecha publicado: <a href="#" style="text-decoration:none" class="link-dark">'.$book->publi_date.'</a></li></li>
-                          <li>Pais: <a href="#" style="text-decoration:none" class="link-dark">'.$book->country_id.'</a></li></li>
+                          <li>Pais: <a href="#" style="text-decoration:none" class="link-dark">'.$countries = Country::find($book->country_id)->country_name.'</a></li></li>
                           <li>Generos:</li>
                           <a href="#" style="text-decoration:none" class="link-info">xxxx</a>, <a href="#" style="text-decoration:none" class="link-info">xxxx</a>, <a href="#"style="text-decoration:none" class="link-info">xxxx</a>
 
@@ -46,7 +46,7 @@ $admin=true;
       </div>';
 
 
-      }
+    }
 
 ?>
 

@@ -14,7 +14,7 @@ class Book extends Model
 
     public function country()
     {
-        return $this->hasOne(Country::class, 'country_id');
+        return $this->hasOne(Country::class);
     }
 }
 

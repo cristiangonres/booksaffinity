@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Country extends Model
 {
-    use HasFactory;
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
 }
