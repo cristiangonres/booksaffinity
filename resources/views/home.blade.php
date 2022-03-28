@@ -11,9 +11,20 @@
 $admin=true;
 
       foreach($books as $book){
+        //$countries = Country::find($book->country_id)->country_name
+        
+        var_dump($book->country);
+        
 
-
+        $countryname;
           //echo $book->title . " - " . $book->publi_date . "<br>";
+         /* foreach($countries as $country){
+
+
+              if ($book->country_id == $country->country_id){
+                  $countryname = $country->country_name;
+              }
+          }*/
 
           echo '<div class="m-4 p-2 shadow rounded border-bottom container border-top d-flex col-md-12 flex-shrink-0">
 
@@ -28,7 +39,7 @@ $admin=true;
                           <li>Titulo: <a href="#" style="text-decoration:none" class="link-dark">'.$book->title.'</a></li>
                           <li>Autor: <a href="#" style="text-decoration:none" class="link-dark">'.$book->author_id.'</a></li></li>
                           <li>Fecha publicado: <a href="#" style="text-decoration:none" class="link-dark">'.$book->publi_date.'</a></li></li>
-                          <li>Pais: <a href="#" style="text-decoration:none" class="link-dark">'.$countries = Country::find($book->country_id)->country_name.'</a></li></li>
+                          <li>Pais: <a href="#" style="text-decoration:none" class="link-dark">'.$book->country.'</a></li></li>
                           <li>Generos:</li>
                           <a href="#" style="text-decoration:none" class="link-info">xxxx</a>, <a href="#" style="text-decoration:none" class="link-info">xxxx</a>, <a href="#"style="text-decoration:none" class="link-info">xxxx</a>
 
