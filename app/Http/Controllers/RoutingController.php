@@ -11,55 +11,23 @@ class RoutingController extends Controller
 {
     function home()
     {
-
-
         $books = Book::all();
         $countries = Country::all();
 
         return view('home', compact('books', 'countries'));
 
-        /*foreach($books as $book){
-          echo $book->title . " - " . $book->publi_date . "<br>";
-        }*/
-
-        /*if(isset($_POST['filter'])){
-
-         if(isset($_POST['ordering']) && $_POST['categoria']!="" ){
-
-            if($_POST['ordering']=='asc'){
-               $products = products::where('categoria',$_POST['categoria'])->orderBy('precio')->get();
-
-            }elseif($_POST['ordering']=='dsc'){
-            $products = products::where('categoria',$_POST['categoria'])->orderByDesc('precio')->get();
-            }
-
-         }elseif($_POST['categoria'] != "" && !isset($_POST['ordering']) ){
-
-            $products = products::where('categoria',$_POST['categoria'])->get();
-
-         }elseif(isset($_POST['ordering']) && $_POST['categoria'] == "" ){
-
-            if($_POST['ordering']=='asc'){
-               $products = products::orderBy('precio')->get();
-
-            }elseif($_POST['ordering']=='dsc'){
-               $products = products::orderByDesc('precio')->get();
-
-            }
-         }else{
-            $products = products::all();
-         }
-
-      }else{
-         $products = products::all();
-      }*/
-
-
-        /*foreach($products as $product){
-         array_push($id, $product->id);
-         array_push($nombre, $product->nombre_producto);
-         array_push($categoria, $product->categoria);
-         array_push($precio, $product->precio);
-      }*/
     }
+
+    function book(){
+        $books = Book::all();
+        $countries = Country::all();
+        $authors= Author::all();
+
+        return view('book', compact('books', 'countries', 'authors'));
+
+    }
+
+
 }
+
+
