@@ -5,15 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Country;
+use App\Models\Author;
 
 class RoutingController extends Controller
 {
     function home()
     {
-        $id = array();
-        $nombre = array();
-        $categoria = array();
-        $precio = array();
+
 
         $books = Book::all();
         $countries = Country::all();
