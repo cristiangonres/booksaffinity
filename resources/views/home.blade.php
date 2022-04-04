@@ -14,9 +14,7 @@
             $year = date('Y', strtotime($book->publi_date));
             echo '<div class="m-4 p-2 shadow rounded border-bottom container border-top d-flex col-md-12 flex-shrink-0">
 
-                                          <div id="position">' .
-                $book->id .
-                '</div>
+
                                           <div class="container">
                                               <div class="row justify-content-start">
                                                   <div class="col-3 portada ">
@@ -47,7 +45,10 @@
                                                           <li>Generos:';
             $ngen = count($book->genres);
             for ($i = 0; $i < $ngen; $i++) {
-                echo '<a href="#" style="text-decoration:none" class="link-info"> ' . $book->genres[$i]['genre_name'] . ' </a>';
+                echo '<a href="#" style="text-decoration:none" class="link-info"> '. $book->genres[$i]['genre_name'] .'</a>';
+                if ( $ngen > 1 && $i <  $ngen - 1) {
+                    echo ',';
+                }
             }
 
             echo '</li>
