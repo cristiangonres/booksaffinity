@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Account extends Model
 {
-    use HasFactory;
+    public function books()
+    {
+        return $this->belongsToMany(Book::class)->withPivot('account_id', 'book_id', 'rate')->using(AccountBook::class);;
+    }
 }
