@@ -16,4 +16,9 @@ class Author extends Model
     {
         return $this->hasOne(Country::class, 'id');
     }
+
+    public function accounts()
+    {
+        return $this->belongsToMany(Account::class)->withPivot('author_id', 'account_id', 'rate')->using(AccountAuthor::class);
+    }
 }

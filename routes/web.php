@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoutingController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\AuthorController;
 use App\Models\Book;
 use App\Models\Country;
 
@@ -34,6 +37,11 @@ Route::get('/home', function () {
 Route::get('/', [RoutingController::class, 'home']);
 Route::get('/home', [RoutingController::class, 'home']);
 
+Route::post('/afterSignup', [UserController::class, 'signUp']);
+Route::post('/afterSignin', [UserController::class, 'signIn']);
+
+Route::get('/categorias', [CategoriesController::class, 'showAllCategories']);
+Route::get('/category/{id}', [CategoriesController::class, 'showOneCategories']);
 
 Route::get('/testdb', function () {
 
@@ -50,10 +58,8 @@ Route::get('/testdb', function () {
 });
 
 
+Route::get('/author/{id}', [AuthorController::class, 'showOneAuthor']);
 
-Route::get('/author', function () {
-    return view('author');
-});
 
 Route::get('/authormanage', function () {
     return view('authormanage');
@@ -84,7 +90,11 @@ Route::get('/moderatexx', function () {
 });
 
 Route::get('/signup', function () {
-    return view('signup');
+    return view('signup2');
+});
+
+Route::get('/signin', function () {
+    return view('signin');
 });
 
 /*

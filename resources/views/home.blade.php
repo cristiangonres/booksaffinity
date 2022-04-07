@@ -30,7 +30,7 @@
                                                                                   <li>Autor:';
             $nauth = count($book->authors);
             for ($i = 0; $i < $nauth; $i++) {
-                echo '<a href="#" style="text-decoration:none" class="link-dark"> ' . $book->authors[$i]['author_name'] . ' </a>';
+                echo '<a href="/author/' . $book->authors[$i]['id']. '"  style="text-decoration:none" class="link-dark"> ' . $book->authors[$i]['author_name'] . ' </a>';
                 if ($nauth > 1 && $i < $nauth - 1) {
                     echo 'y';
                 }
@@ -45,7 +45,7 @@
                                                                                   <li>Generos:';
             $ngen = count($book->genres);
             for ($i = 0; $i < $ngen; $i++) {
-                echo '<a href="#" style="text-decoration:none" class="link-info"> ' . $book->genres[$i]['genre_name'] . '</a>';
+                echo '<a href="/category/' . $book->genres[$i]['id']. '" style="text-decoration:none" class="link-info"> ' . $book->genres[$i]['genre_name'] . '</a>';
                 if ($ngen > 1 && $i < $ngen - 1) {
                     echo ',';
                 }
