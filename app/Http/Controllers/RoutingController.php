@@ -11,7 +11,7 @@ class RoutingController extends Controller
 {
     function home()
     {
-        $books = Book::all();
+        $books = Book::paginate(5);
         return view('home', compact('books'));
 
     }
