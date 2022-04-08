@@ -36,7 +36,7 @@
 
             </span> </div>
             <div class="m-bot15"> <strong>Fecha publicación : </strong> <span class="amount-old">{{$book["0"]["publi_date"]}}</span> </div>
-            <div class="m-bot15"> <strong>Pais : </strong> <span class="amount-old"><a href="/country/{{ $book["0"]["country_id"] }}"> {{$book["0"]["country"]['country_name']}}</a></span> </div>
+            <div class="m-bot15"> <strong>Pais : </strong> <span class="amount-old"><a href="/countrybook/{{ $book["0"]["country_id"] }}"> {{$book["0"]["country"]['country_name']}}</a></span> </div>
             <div class="m-bot15"> <strong>Editorial : </strong> <span class="amount-old">{{$book["0"]["title"]}}</span> </div>
             <div class="m-bot15"> <strong>Paginas : </strong> <span class="amount-old"></span> </div>
             <div class="m-bot15"> <strong>Tipo : </strong> <span class="amount-old">{{$book["0"]["pages"]}}</span> </div>

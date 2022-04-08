@@ -25,7 +25,7 @@
                                     <li>Año muerte:' .
             $author['0']['death_date'] .
             '</li>
-                                    <li>Pais: <a href="#" style="text-decoration:none" class="link-dark">' .
+                                    <li>Pais: <a href="/countryauthor/' . $author['0']['country']['id'] . '" style="text-decoration:none" class="link-dark">' .
             $author['0']['country']['country_name'] .
             '</a></li>
                                     <li>Descripción: ' .
@@ -93,7 +93,7 @@
         echo ' <li>Año: <a href="#" style="text-decoration:none" class="link-dark">' .
             $year .
             '</a></li>
-        <li>Pais: <a href="#" style="text-decoration:none" class="link-dark">' . $book->country['country_name'] . '</a></li>
+        <li>Pais: <a href="/countrybook/' . $book->country['id'] . '" style="text-decoration:none" class="link-dark">' . $book->country['country_name'] . '</a></li>
 
         <li>Generos:';
         $ngen = count($book->genres);

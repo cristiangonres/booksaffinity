@@ -49,7 +49,7 @@ Route::get('/genres', [GenreController::class, 'showAllGenres']);
 Route::get('/genre/{id}', [GenreController::class, 'showOneGenre']);
 
 Route::get('/countries', [CountryController::class, 'countries']);
-Route::get('/country/{id}', [CountryController::class, 'booksByCountry']);
+Route::get('/countrybook/{id}', [CountryController::class, 'booksByCountry']);
 Route::get('/countryauthor/{id}', [CountryController::class, 'authorsByCountry']);
 
 Route::get('/testdb', function () {
