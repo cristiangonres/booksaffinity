@@ -36,7 +36,7 @@
         <li>Año: <a href="#" style="text-decoration:none" class="link-dark">' .
             $year .
             '</a></li>
-        <li>Pais: <a href="#" style="text-decoration:none" class="link-dark">' . $book->country['country_name'] . '</a></li>
+        <li>Pais: <a href="/country/' . $book->country['id'] . '" style="text-decoration:none" class="link-dark">' . $book->country['country_name'] . '</a></li>
 
         <li>Generos:';
         $ngen = count($book->genres);

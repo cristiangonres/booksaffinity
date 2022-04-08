@@ -262,9 +262,9 @@ body {
         </a>
       </li>
       <li>
-        <a href="/book" class="nav-link text-success">
+        <a href="/countries" class="nav-link text-success">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-          Detalle libro
+          Paises
         </a>
       </li>
       <li>

@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CountryController;
 use App\Models\Book;
 use App\Models\Country;
 
@@ -46,6 +47,9 @@ Route::post('/afterSignin', [UserController::class, 'signIn']);
 
 Route::get('/genres', [GenreController::class, 'showAllGenres']);
 Route::get('/genre/{id}', [GenreController::class, 'showOneGenre']);
+
+Route::get('/countries', [CountryController::class, 'countries']);
+Route::get('/country/{id}', [CountryController::class, 'booksByCountry']);
 
 Route::get('/testdb', function () {
 

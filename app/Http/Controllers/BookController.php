@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use Illuminate\Support\Facades\DB;
 
 
 class BookController extends Controller
@@ -19,6 +20,7 @@ class BookController extends Controller
         ->get();
         return view('bookdetail', compact('book'));
     }
+
 
 
 }
