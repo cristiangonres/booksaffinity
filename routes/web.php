@@ -5,6 +5,7 @@ use App\Http\Controllers\RoutingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
 use App\Models\Book;
 use App\Models\Country;
 
@@ -37,6 +38,9 @@ Route::get('/home', function () {
 Route::get('/', [RoutingController::class, 'home']);
 Route::get('/home', [RoutingController::class, 'home']);
 
+Route::get('/books', [BookController::class, 'books']);
+Route::get('/book/{id}', [BookController::class, 'bookdetail']);
+
 Route::post('/afterSignup', [UserController::class, 'signUp']);
 Route::post('/afterSignin', [UserController::class, 'signIn']);
 
@@ -58,6 +62,7 @@ Route::get('/testdb', function () {
 });
 
 
+Route::get('/authors', [AuthorController::class, 'showAllAuthors']);
 Route::get('/author/{id}', [AuthorController::class, 'showOneAuthor']);
 
 

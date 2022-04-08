@@ -74,11 +74,11 @@
                                                                             </div>
 
                                                                         </div>';
-                    }                                        
+                    }
                 }
             }
-                    
-    ?> 
+
+    ?>
 </div>
 
 @endsection

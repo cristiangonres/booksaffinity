@@ -250,6 +250,18 @@ body {
         </a>
       </li>
       <li>
+        <a href="/authors" class="nav-link text-success">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+          Autores
+        </a>
+      </li>
+      <li>
+        <a href="/books" class="nav-link text-success">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+          Libros
+        </a>
+      </li>
+      <li>
         <a href="/book" class="nav-link text-success">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
           Detalle libro
@@ -261,12 +273,7 @@ body {
           Editar libro
         </a>
       </li>
-      <li>
-        <a href="/author" class="nav-link text-success">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-          Detalle Author
-        </a>
-      </li>
+
       <li>
         <a href="/authormanage" class="nav-link text-success">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>

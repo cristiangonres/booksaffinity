@@ -17,6 +17,6 @@ class GenreController extends Controller
 
     function showOneGenre($id){
         $books=Book::all();
-        return view('genre', compact('books', 'id'));
+        return view('booksbygenre', compact('books', 'id'));
     }
 }

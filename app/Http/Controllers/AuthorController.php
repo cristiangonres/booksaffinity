@@ -14,7 +14,8 @@ class AuthorController extends Controller
     }
 
     function showOneAuthor($id){
-        $authors=Author::all();
-        return view('author', compact('authors', 'id'));
+        $author=Author::where('id', $id)
+        ->get();
+        return view('author', compact('author'));
     }
 }
