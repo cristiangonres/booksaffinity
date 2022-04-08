@@ -43,7 +43,7 @@
                                                                                             <li>Generos:';
                         $ngen = count($book->genres);
                         for ($i = 0; $i < $ngen; $i++) {
-                            echo '<a href="#" style="text-decoration:none" class="link-info"> ' . $book->genres[$i]['genre_name'] . '</a>';
+                            echo '<a href="/genre/' . $book->genres[$i]['id'] . '" style="text-decoration:none" class="link-info"> ' . $book->genres[$i]['genre_name'] . '</a>';
                             if ($ngen > 1 && $i < $ngen - 1) {
                                 echo ',';
                             }
