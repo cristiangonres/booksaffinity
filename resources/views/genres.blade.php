@@ -4,17 +4,17 @@
 
 @section('content')
 <div class="row">
-    <?php 
+    <?php
         //var_dump($categories);
-        
-        foreach($categories as $category){
+
+        foreach($genres as $genre){
             echo '<ul class="list-group">
-                    <li class="list-group-item"><a href=/category/' . $category->id . '>' . $category->genre_name . '</a></li>
+                    <li class="list-group-item"><a href=/genre/' . $genre->id . '>' . $genre->genre_name . '</a></li>
                 </ul>';
             //echo $category->genre_name;
         }
 
-    ?> 
+    ?>
 </div>
 
 @endsection

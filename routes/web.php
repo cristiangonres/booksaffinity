@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoutingController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\AuthorController;
 use App\Models\Book;
 use App\Models\Country;
@@ -40,8 +40,8 @@ Route::get('/home', [RoutingController::class, 'home']);
 Route::post('/afterSignup', [UserController::class, 'signUp']);
 Route::post('/afterSignin', [UserController::class, 'signIn']);
 
-Route::get('/categorias', [CategoriesController::class, 'showAllCategories']);
-Route::get('/category/{id}', [CategoriesController::class, 'showOneCategories']);
+Route::get('/genres', [GenreController::class, 'showAllGenres']);
+Route::get('/genre/{id}', [GenreController::class, 'showOneGenre']);
 
 Route::get('/testdb', function () {
 
