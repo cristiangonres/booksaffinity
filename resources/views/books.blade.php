@@ -22,7 +22,7 @@
 
         <div class="col-6">
         <ul class="list-unstyled">
-        <li>Titulo: <a href="#" style="text-decoration:none" class="link-dark">' . $book->title .'</a></li>
+        <li>Titulo: <a href="/book/' . $book->id . '" style="text-decoration:none" class="link-dark">' . $book->title .'</a></li>
         <li>Autor:';
         $nauth = count($book->authors);
         for ($i = 0; $i < $nauth; $i++) {

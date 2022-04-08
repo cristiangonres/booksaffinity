@@ -14,9 +14,9 @@
         </div>
         <div class="col-md-6">
             <h4 class="pro-d-title">
-                <a href="#" class="">
+
                     {{$book["0"]["title"]}}
-                </a>
+
             </h4>
 
             <div class="m-bot15"> <strong>Autor : </strong> <span class="amount-old">
@@ -25,7 +25,7 @@
 
         $nauth = count($book["0"]["authors"]);
         for ($i = 0; $i < $nauth; $i++) {
-            echo '<a href="/author/' . $book["0"]["authors"][$i]['id'] . '"  style="text-decoration:none" class="link-dark"> ' . $book["0"]["authors"]["0"]["author_name"]
+            echo '<a href="/author/' . $book["0"]["authors"][$i]['id'] . '"  style="text-decoration:none" class="link-dark"> ' . $book["0"]["authors"][$i]["author_name"]
                . ' </a>';
             if ($nauth > 1 && $i < $nauth - 1) {
                 echo 'y';

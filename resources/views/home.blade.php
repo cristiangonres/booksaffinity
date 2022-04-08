@@ -16,12 +16,12 @@
             <div class="container">
             <div class="row justify-content-start">
             <div class="col-3 portada ">
-            <a href="#"><img src="data:image/jpeg;base64,' . base64_encode($book->cover) . '" width="150" height="200" alt="portada"></a>
+            <a href="/book/' . $book->id . '"><img src="data:image/jpeg;base64,' . base64_encode($book->cover) . '" width="150" height="200" alt="portada"></a>
             </div>
 
             <div class="col-6">
             <ul class="list-unstyled">
-            <li>Titulo: <a href="#" style="text-decoration:none" class="link-dark">' . $book->title .'</a></li>
+            <li>Titulo: <a href="/book/' . $book->id . '" style="text-decoration:none" class="link-dark">' . $book->title .'</a></li>
             <li>Autor:';
             $nauth = count($book->authors);
             for ($i = 0; $i < $nauth; $i++) {
@@ -63,7 +63,7 @@
             '</span>
             <span class="badge bg-primary"> Votos: ' .
                 count($book->accounts) .
-                '</span>
+            '</span>
 
             </div>
             </div>
