@@ -25,7 +25,7 @@
         <li>Nombre: <a href="/author/' . $author->id . '" style="text-decoration:none" class="link-dark">' . $author->author_name . '</a></li>
         <li>Año nacimiento:' . $author->birth_date .  '</li>
         <li>Año muerte:' .  $author->birth_date .  '</li>
-        <li>Pais: <a href="#" style="text-decoration:none" class="link-dark">' .  $author->country['country_name'] . '</a></li>
+        <li>Pais: <a href="/countryauthor/' . $author->country['id'] . '" style="text-decoration:none" class="link-dark">' .  $author->country['country_name'] . '</a></li>
         </ul>
         </div>
 

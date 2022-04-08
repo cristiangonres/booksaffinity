@@ -14,7 +14,7 @@ class Author extends Model
 
     public function country()
     {
-        return $this->hasOne(Country::class, 'id');
+        return $this->belongsTo(Country::class);
     }
 
     public function accounts()

@@ -22,5 +22,4 @@ class BookController extends Controller
     }
 
 
-
 }
