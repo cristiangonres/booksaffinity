@@ -9,11 +9,16 @@ class Author extends Model
 {
     public function books()
     {
-        return $this->belongsToMany(Author::class)->withPivot('author_id');
+        return $this->belongsToMany(Book::class)->withPivot('author_id');
     }
 
     public function country()
     {
-        return $this->hasOne(Country::class, 'id');
+        return $this->belongsTo(Country::class);
+    }
+
+    public function accounts()
+    {
+        return $this->belongsToMany(Account::class)->withPivot('author_id', 'account_id', 'rate')->using(AccountAuthor::class);
     }
 }

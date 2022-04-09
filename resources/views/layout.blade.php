@@ -7,8 +7,11 @@
         <title>@yield('title')</title>
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 53a3ed2ed131137b2b3f924d228d0a99a6541fdd
         <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,7 +28,11 @@ body {
 }
 .form-control {
 	box-shadow: none;
+<<<<<<< HEAD
 	border-radius: 4px;        
+=======
+	border-radius: 4px;
+>>>>>>> 53a3ed2ed131137b2b3f924d228d0a99a6541fdd
 	border-color: #dfe3e8;
 }
 .navbar {
@@ -41,7 +48,11 @@ body {
 	padding-right: 50px;
 }
 .navbar .navbar-brand b {
+<<<<<<< HEAD
 	color: #29c68c;		
+=======
+	color: #29c68c;
+>>>>>>> 53a3ed2ed131137b2b3f924d228d0a99a6541fdd
 }
 .navbar a, .navbar a:active {
 	color: #999;
@@ -113,6 +124,26 @@ body {
 .navbar .login-dropdown .dropdown-toggle::after {
 	display: none;
 }
+
+/*Estilos de la vista categorias */
+.list-group-item{
+  background-color: #343a40!important;
+}
+.list-group-item a{
+  text-decoration:none;
+  color: #28a745;
+}
+
+.list-group-item:hover{
+  text-decoration:none;
+  color:green;
+}
+
+.list-group-item a:hover{
+  text-decoration:none;
+  color: grey;
+}
+
 @media (min-width: 1200px){
 	.search-form .input-group {
 		width: 300px;
@@ -142,7 +173,7 @@ body {
 
     <body>
     <header class="text-dark">
-        
+
 <!-- Image and text -->
 <nav class="navbar navbar-light bg-light">
   <a class="navbar-brand" href="#">
@@ -154,7 +185,7 @@ body {
     </header>
 
     <nav class="navbar border-0 navbar-expand-lg navbar-light bg-dark">
-	<a href="#" class="navbar-brand text-white">Books<b>Affinity</b></a>  		
+	<a href="#" class="navbar-brand text-white">Books<b>Affinity</b></a>
 	<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -162,10 +193,10 @@ body {
 	<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
 		<div class="navbar-nav">
 			<a href="/" class="nav-item nav-link text-success">Home</a>
-			<a href="#" class="nav-item nav-link text-success">Mi Perfil</a>			
+			<a href="#" class="nav-item nav-link text-success">Mi Perfil</a>
 			<div class="nav-item dropdown">
 				<a href="#" data-toggle="dropdown" class="nav-item nav-link text-success dropdown-toggle">Generos</a>
-				<div class="dropdown-menu">					
+				<div class="dropdown-menu">
 					<a href="#" class="dropdown-item">Terror</a>
 					<a href="#" class="dropdown-item">Fantastico</a>
 					<a href="#" class="dropdown-item">Drama</a>
@@ -188,28 +219,29 @@ body {
 		<div class="navbar-nav ml-auto">
 			<div class="nav-item dropdown login-dropdown ">
 				<a href="#" data-toggle="dropdown" class="nav-item nav-link text-success dropdown-toggle" aria-expanded="false"><i class="fa fa-user-o"></i> Login</a>
-				<div class="dropdown-menu ">					
-                    <form class="form-inline login-form" action="/examples/actions/confirmation.php" method="post">
+				<div class="dropdown-menu ">
+                    <form class="form-inline login-form" action="/afterSignin" method="post">
+                    @csrf
                         <div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text">
 									<span class="fa fa-user"></span>
-								</span>                    
+								</span>
 							</div>
-                            <input type="text" class="form-control" placeholder="Username" required="">
+                            <input type="text" class="form-control" name="userName" placeholder="Username" required="">
                         </div>
                         <div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text">
 									<i class="fa fa-lock"></i>
-								</span>                    
+								</span>
 							</div>
-                            <input type="text" class="form-control" placeholder="Password" required="">
+                            <input type="text" class="form-control" name="userPass" placeholder="Password" required="">
                         </div>
                         <button type="submit" class="btn btn-primary">Login</button>
                     </form>
                 </div>
-            </div>			
+            </div>
         </div>
 	</div>
 </nav>
@@ -229,9 +261,21 @@ body {
         </a>
       </li>
       <li>
-        <a href="/book" class="nav-link text-success">
+        <a href="/authors" class="nav-link text-success">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+          Autores
+        </a>
+      </li>
+      <li>
+        <a href="/books" class="nav-link text-success">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-          Detalle libro
+          Libros
+        </a>
+      </li>
+      <li>
+        <a href="/countries" class="nav-link text-success">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+          Paises
         </a>
       </li>
       <li>
@@ -240,12 +284,7 @@ body {
           Editar libro
         </a>
       </li>
-      <li>
-        <a href="/author" class="nav-link text-success">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-          Detalle Author
-        </a>
-      </li>
+
       <li>
         <a href="/authormanage" class="nav-link text-success">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
@@ -262,6 +301,12 @@ body {
         <a href="/editorialmanage" class="nav-link text-success">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
           Editar Editorial
+        </a>
+      </li>
+      <li>
+        <a href="/genres" class="nav-link text-success">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+          Categorías
         </a>
       </li>
       <li>
@@ -288,7 +333,7 @@ body {
   </div>
 
   <div class="col-md-9 bg-opacity-75">
-    
+
 
         @yield('content')
   </div>

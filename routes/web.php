@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoutingController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\CountryController;
 use App\Models\Book;
 use App\Models\Country;
 
@@ -35,6 +39,19 @@ Route::get('/home', function () {
 Route::get('/', [RoutingController::class, 'home']);
 Route::get('/home', [RoutingController::class, 'home']);
 
+Route::get('/books', [BookController::class, 'books']);
+Route::get('/book/{id}', [BookController::class, 'bookdetail']);
+
+Route::post('/afterSignup', [UserController::class, 'signUp']);
+Route::post('/afterSignin', [UserController::class, 'signIn']);
+
+Route::get('/genres', [GenreController::class, 'showAllGenres']);
+Route::get('/genre/{id}', [GenreController::class, 'showOneGenre']);
+
+Route::get('/countries', [CountryController::class, 'countries']);
+Route::get('/countrybook/{id}', [CountryController::class, 'booksByCountry']);
+Route::get('/countryauthor/{id}', [CountryController::class, 'authorsByCountry']);
+
 Route::get('/testdb', function () {
 
     $country = Country::all();
@@ -50,10 +67,9 @@ Route::get('/testdb', function () {
 });
 
 
+Route::get('/authors', [AuthorController::class, 'showAllAuthors']);
+Route::get('/author/{id}', [AuthorController::class, 'showOneAuthor']);
 
-Route::get('/author', function () {
-    return view('author');
-});
 
 Route::get('/authormanage', function () {
     return view('authormanage');
@@ -82,7 +98,11 @@ Route::get('/filteredlist', function () {
 });*/
 
 Route::get('/signup', function () {
-    return view('signup');
+    return view('signup2');
+});
+
+Route::get('/signin', function () {
+    return view('signin');
 });
 
 Route::post('/signup', [UserController::class, 'insertar']);

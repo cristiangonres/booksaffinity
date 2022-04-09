@@ -12,11 +12,10 @@ class RoutingController extends Controller
     function home()
     {
         $books = Book::all();
-        $countries = Country::all();
-
-        return view('home', compact('books', 'countries'));
+        return view('home', compact('books'));
 
     }
+
 
     function book(){
         $books = Book::all();

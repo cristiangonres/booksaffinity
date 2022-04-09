@@ -9,6 +9,12 @@ class Country extends Model
 {
     public function books()
     {
-        return $this->hasOne(Book::class);
+        return $this->hasMany(Book::class, 'country_id');
+    }
+
+    public function author()
+    {
+        return $this->hasMany(Author::class, 'country_id');
     }
 }
+
