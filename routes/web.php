@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoutingController;
+use App\Http\Controllers\UserController;
 use App\Models\Book;
 use App\Models\Country;
 
@@ -34,7 +35,6 @@ Route::get('/home', function () {
 Route::get('/', [RoutingController::class, 'home']);
 Route::get('/home', [RoutingController::class, 'home']);
 
-
 Route::get('/testdb', function () {
 
     $country = Country::all();
@@ -59,9 +59,7 @@ Route::get('/authormanage', function () {
     return view('authormanage');
 });
 
-Route::get('/book', function () {
-    return view('book');
-});
+Route::get('/book', [RoutingController::class, 'book']);
 
 Route::get('/bookmanage', function () {
     return view('bookmanage');
@@ -79,13 +77,16 @@ Route::get('/filteredlist', function () {
     return view('filteredlist');
 });
 
-Route::get('/moderatexx', function () {
+/*Route::get('/moderatexx', function () {
     return view('moderatexx');
-});
+});*/
 
 Route::get('/signup', function () {
     return view('signup');
 });
+
+Route::post('/signup', [UserController::class, 'insertar']);
+
 
 /*
 Route::get('/', [RoutingController::class, 'home']);

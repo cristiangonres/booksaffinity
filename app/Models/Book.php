@@ -9,7 +9,7 @@ class Book extends Model
 {
     public function authors()
     {
-        return $this->belongsToMany(Author::class)->withPivot('author_name');
+        return $this->belongsToMany(Author::class)->withPivot('book_id');
     }
 
     public function country()

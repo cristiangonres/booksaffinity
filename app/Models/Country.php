@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Country extends Model
 {
-    public function book()
+    public function books()
     {
-        return $this->belongsTo(Book::class);
+        return $this->hasOne(Book::class);
     }
 }

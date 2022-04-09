@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Author extends Model
 {
+    public function books()
+    {
+        return $this->belongsToMany(Author::class)->withPivot('author_id');
+    }
 
     public function country()
     {
-        return $this->hasOne(Country::class, 'country_id');
+        return $this->hasOne(Country::class, 'id');
     }
 }
