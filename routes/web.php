@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookManageController;
 use App\Http\Controllers\CountryController;
 use App\Models\Book;
 use App\Models\Country;
@@ -43,7 +44,7 @@ Route::get('/books', [BookController::class, 'books']);
 Route::get('/book/{id}', [BookController::class, 'bookdetail']);
 
 Route::post('/afterSignup', [UserController::class, 'signUp']);
-Route::post('/afterSignin', [UserController::class, 'signIn']);
+Route::post('/home', [UserController::class, 'signIn']);
 
 Route::get('/genres', [GenreController::class, 'showAllGenres']);
 Route::get('/genre/{id}', [GenreController::class, 'showOneGenre']);
@@ -52,24 +53,11 @@ Route::get('/countries', [CountryController::class, 'countries']);
 Route::get('/countrybook/{id}', [CountryController::class, 'booksByCountry']);
 Route::get('/countryauthor/{id}', [CountryController::class, 'authorsByCountry']);
 
-Route::get('/testdb', function () {
-
-    $country = Country::all();
-    foreach($country as $cuntry){
-        echo $cuntry->country_name .  "<br>";
-    }
-
-    $books = Book::all();
-    foreach($books as $book){
-        echo $book->title . " - " . $book->publi_date . "<br>";
-    }
-
-});
-
-
 Route::get('/authors', [AuthorController::class, 'showAllAuthors']);
 Route::get('/author/{id}', [AuthorController::class, 'showOneAuthor']);
 
+Route::get('/bookmanage', [BookManageController::class, 'empty']);
+Route::post('/bookmanage', [BookManageController::class, 'insert']);
 
 Route::get('/authormanage', function () {
     return view('authormanage');
@@ -77,9 +65,7 @@ Route::get('/authormanage', function () {
 
 Route::get('/book', [RoutingController::class, 'book']);
 
-Route::get('/bookmanage', function () {
-    return view('bookmanage');
-});
+
 
 Route::get('/editorial', function () {
     return view('editorial');
@@ -105,7 +91,7 @@ Route::get('/signin', function () {
     return view('signin');
 });
 
-Route::post('/signup', [UserController::class, 'insertar']);
+
 
 
 /*
