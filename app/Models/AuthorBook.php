@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class BookGenre extends Pivot
+class AuthorBook extends Pivot
 {
     public $timestamps = false;
     use HasFactory;

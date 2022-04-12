@@ -56,7 +56,7 @@ Route::get('/countryauthor/{id}', [CountryController::class, 'authorsByCountry']
 Route::get('/authors', [AuthorController::class, 'showAllAuthors']);
 Route::get('/author/{id}', [AuthorController::class, 'showOneAuthor']);
 
-Route::get('/bookmanage', [BookManageController::class, 'empty']);
+Route::get('/bookmanage', [BookManageController::class, 'emptyRet']);
 Route::post('/bookmanage', [BookManageController::class, 'insert']);
 
 Route::get('/authormanage', function () {

@@ -16,10 +16,10 @@
         <input type="text" name="title" class="form-control" value= "" />
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-2">
       <div class="form-outline">
-      <label class="form-label" for="author">Autor: </label>
-        <input type="text" name="author" class="form-control" value= "" />
+      <label class="form-label" for="pages">Paginas:</label>
+        <input type="number" name="pages" class="form-control" value= "" />
       </div>
       </div>
       </div>
@@ -48,13 +48,8 @@
 
   <!-- 2 column grid layout with text inputs for the first and last names -->
   <div class="row col-12 mb-2">
-    <div class="col-2">
-      <div class="form-outline">
-      <label class="form-label" for="pages">Paginas:</label>
-        <input type="number" name="pages" class="form-control" value= "" />
-      </div>
-      </div>
-      <div class="col-6">
+
+      <div class="col-8">
       <div class="form-outline">
       <label class="form-label" for="cover">Portada:</label>
         <input type="file" name="cover" class="form-control" value= "" />
@@ -64,13 +59,13 @@
 
     <div class="row col-12 mb-2">
       <div id="insert" class="col-4">
-      <div id="addauthor" class="form-outline">
+      <div class="form-outline">
       <label class="form-label" for="author1">Autor: </label>
-        <input type="text" name="author1" class="form-control" value= "" />
+        <input type="text" name="author1" class="form-control" />
       </div>
-      <a href="javascript:new_author()">Añadir autor </a>
+      <a href="javascript:author_new()">Añadir autor </a>
       </div>
-    <div class="col-4">
+    <div id="ins" class="col-4">
       <div class="form-outline">
       <label class="form-label" for="genre1">Genero: </label>
       <select name="genre1" class="form-control">
@@ -81,6 +76,7 @@
             ?>
         </select>
       </div>
+      <a href="javascript:genre_new()">Añadir género </a>
     </div>
 
       </div>
@@ -103,70 +99,81 @@
  </div>
 </form>
 
-<style>
-   #newlink {width:600px}
-</style>
-<form method="post" action="">
-<div id="newlink">
-<div>
-<table>
-	<tr>
-		<td> Link URL: </td>
-		<td> <input type="text" name="linkurl[]" value="http://www.satya-weblog.com"> </td>
-	</tr>
-	<tr>
-		<td> Link Description: </td>
-		<td>  <textarea name="linkdesc[]" cols="50" rows="5" ></textarea> </td>
-	</tr>
-</table>
-</div>
-</div>
-	<p>
-		<br>
-		<input type="submit" name="submit1">
-		<input type="reset" name="reset1">
-	</p>
-<p id="addnew">
-	<a href="javascript:new_author()">Añadir autor </a>
-</p>
-</form>
-<!-- Template -->
-<div id="newlinktpl" style="display:none">
-<div>
-<table>
-	<tr>
-		<td> Link URL: </td>
-		<td> <input type="text" name="linkurl[]" value=""> </td>
-	</tr>
-	<tr>
-		<td> Link Description: </td>
-		<td> <textarea name="linkdesc[]" cols="50" rows="5" ></textarea> </td>
-	</tr>
-</table>
-</div>
-</div>
-
 
  <script>
-     /*
+     
 
 //This script is identical to the above JavaScript function.
 
-var ct = 1;
-function new_author()
-{
-	ct++;
-	var div1 = document.createElement('div');
-	div1.class = "form-outline";
-	// link to delete extended form elements
-	// var delLink = '<div style="text-align:right;margin-right:65px"><a href="javascript:delIt('+ ct +')">Del</a></div>';
-	input= document.getElementById('addauthor');
-    input.id="addauthor"+ct;
+var c=1;
 
-	document.getElementById('insert').appendChild(input);
+
+function author_new(){
+    c++;
+
+    div1 = document.createElement('div');
+    div1.setAttribute("class", "form-outline");
+
+    lab = document.createElement('label');
+    lab.setAttribute("class", "form-label");
+    lab.setAttribute("for", "author"+c);
+    lab.innerHTML="Autor: ";
+
+    inp = document.createElement('input');
+    inp.setAttribute("type", "text");
+    inp.setAttribute("name", "author"+c);
+    inp.setAttribute("class", "form-control");
+
+    div1.appendChild(lab);
+    div1.appendChild(inp);
+
+    document.getElementById("insert").appendChild(div1);
+
 }
+
+var d=1;
+
+function genre_new(){
+    d++;
+
+    div1 = document.createElement('div');
+    div1.setAttribute("class", "form-outline");
+
+    lab = document.createElement('label');
+    lab.setAttribute("class", "form-label");
+    lab.setAttribute("for", "genre"+d);
+    lab.innerHTML="Género: ";
+
+    sel = document.createElement('select');
+    sel.setAttribute("type", "text");
+    sel.setAttribute("name", "genre"+d);
+    sel.setAttribute("class", "form-control");
+
+
+    <?php
+    $i=1;
+    foreach ($genres as $genre){
+        
+    echo "opt".$i." =document.createElement('option');
+    opt".$i.".setAttribute('value', ".$genre->id.");
+    opt".$i.".innerHTML='".$genre->genre_name."';
+
+    sel.appendChild(opt".$i.");";
+    $i++;
+    }
+?>
+
+
+
+    div1.appendChild(lab);
+    div1.appendChild(sel);
+
+    document.getElementById("ins").appendChild(div1);
+
+}
+
 // function to delete the newly added set of elements
-function delIt(eleId)
+/*function delIt(eleId)
 {
 	d = document;
 	var ele = d.getElementById(eleId);
@@ -174,5 +181,17 @@ function delIt(eleId)
 	parentEle.removeChild(ele);
 }*/
 </script>
+
+<div class="form-outline">
+      <label class="form-label" for="genre1">Genero: </label>
+      <select name="genre1" class="form-control">
+            <?php
+            foreach ($genres as $genre){
+                echo '<option value="'.$genre->id.'">'.$genre->genre_name.'</option>';
+            }
+            ?>
+        </select>
+      </div>
+
 
 @endsection
