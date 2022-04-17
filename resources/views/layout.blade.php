@@ -239,7 +239,7 @@ body {
     <?php
     if($admin){
       if(isset($_SESSION["username"])){
-        echo'<button type="submit" name="sessionclose" class="btn btn-primary">Close Session</button>';
+        echo'<button type="submit" style="width: 80%;" name="sessionclose" class=" align-items-center btn btn-primary">Cerrar sessión</button>';
       }
 
     }else{
@@ -249,7 +249,7 @@ body {
 									<span class="fa fa-user"></span>
 								</span>
 							</div>
-                <input type="text" class="form-control" name="userName" placeholder="Username" required="">
+                <input type="text" class="form-control" name="userName" placeholder="Username" required>
               </div>
               <div class="input-group">
 							<div class="input-group-prepend">
@@ -257,7 +257,7 @@ body {
 									<i class="fa fa-lock"></i>
 								</span>
 							</div>
-                <input type="text" class="form-control" name="userPass" placeholder="Password" required="">
+                <input type="password" class="form-control" name="userPass" placeholder="Password" required>
               </div>
                 <button type="submit" name="sessionopen" class="btn btn-primary">Login</button>';
     }

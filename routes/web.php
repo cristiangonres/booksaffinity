@@ -59,6 +59,9 @@ Route::get('/author/{id}', [AuthorController::class, 'showOneAuthor']);
 Route::get('/bookmanage', [BookManageController::class, 'emptyRet']);
 Route::post('/bookmanage', [BookManageController::class, 'insert']);
 
+Route::get('/filteredlist', [RoutingController::class, 'filterBooks']);
+Route::post('/filteredlist', [RoutingController::class, 'filterBooks']);
+
 Route::get('/authormanage', function () {
     return view('authormanage');
 });
@@ -75,9 +78,7 @@ Route::get('/editorialmanage', function () {
     return view('editorialmanage');
 });
 
-Route::get('/filteredlist', function () {
-    return view('filteredlist');
-});
+
 
 /*Route::get('/moderatexx', function () {
     return view('moderatexx');
