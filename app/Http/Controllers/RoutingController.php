@@ -6,7 +6,6 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Book;
 use App\Models\Country;
 use App\Models\Author;
@@ -38,6 +37,8 @@ class RoutingController extends Controller
         Paginator::defaultView('vendor\pagination\bootstrap-4');
         $genres = Genre::all();
         $data="";
+
+        $genres = emptyGenre($genres);
         
 
 

@@ -11,6 +11,7 @@ class CountryController extends Controller
 {
     function countries(){
         $countries=Country::all();
+        $countries = emptyCountry($countries);
         return view('countries', compact('countries'));
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 use App\Models\Author;
 
@@ -9,8 +10,9 @@ use App\Models\Author;
 class AuthorController extends Controller
 {
     function showAllAuthors(){
-        $authors=Author::all();
-        return view('authors', compact('authors'));
+        Paginator::defaultView('vendor\pagination\bootstrap-4');
+        $data=Author::paginate(10);
+        return view('authors', compact('data'));
     }
 
     function showOneAuthor($id){

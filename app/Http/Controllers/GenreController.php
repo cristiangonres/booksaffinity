@@ -12,6 +12,8 @@ class GenreController extends Controller
 {
     function showAllGenres(){
         $genres=Genre::all();
+        $genres= emptyGenre($genres);
+
         return view('genres', compact('genres'));
     }
 

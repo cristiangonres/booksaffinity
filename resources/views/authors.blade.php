@@ -7,11 +7,15 @@
 
 
 <div class="row">
+
+<div class="mt-4 ml-4">
+            {!! $data->links() !!}
+        </div>
     <?php
 
     $admin = true;
 
-    foreach ($authors as $author) {
+    foreach ($data as $author) {
 
         echo '<div class="m-4 p-2 shadow rounded border-bottom container border-top d-flex col-md-12 flex-shrink-0">
         <div class="container">
@@ -50,6 +54,10 @@
     }
 
     ?>
+
+<div class="mt-4 ml-4">
+            {!! $data->links() !!}
+        </div>
 
 </div>
 

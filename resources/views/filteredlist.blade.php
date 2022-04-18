@@ -46,7 +46,9 @@ input[type="radio"]:checked ~ label {
 
             <form action="/filteredlist"  method="post" id="filtered"><br>
                 @csrf
-                    <select id="categoria" name="category" form="filtered">
+
+                    <label class="form-label" for="category">Genero: </label>
+                    <select name="category" form="filtered">
                         <option value=""></option>
                     <?php
                     foreach($genres as $genre){
@@ -54,13 +56,12 @@ input[type="radio"]:checked ~ label {
                     }
                     ?>
                     </select>
+
+                    
                     <input type="submit" class="btn btn-dark" id="submit" name="filter" value="Filtrar">
 
-                    <input type="radio" id="asc" name="ordering" value="asc">
-                    <label style="font-weight: normal;" for="asc">Ascendente</label>
-                    <input type="radio" id="dsc" name="ordering" value="dsc">
-                    <label style="font-weight: normal;" for="dsc">Descendente</label>
-                    <input type="submit" class="btn btn-dark" id="submit" name="filter" value="Ordenar">
+
+                    
             </form> 
 
         </div>

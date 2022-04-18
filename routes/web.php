@@ -22,19 +22,6 @@ use App\Models\Country;
 |
 */
 
-/*Route::get('/', function () {
-
-
-    return view('home');
-        $books = Book::all();
-    foreach($books as $book){
-        echo $book->title . " - " . $book->publi_date . "<br>";
-    }
-});
-
-Route::get('/home', function () {
-    return view('home');
-});*/
 
 
 Route::get('/', [RoutingController::class, 'home']);
@@ -62,13 +49,11 @@ Route::post('/bookmanage', [BookManageController::class, 'insert']);
 Route::get('/filteredlist', [RoutingController::class, 'filterBooks']);
 Route::post('/filteredlist', [RoutingController::class, 'filterBooks']);
 
+Route::get('/book', [RoutingController::class, 'book']);
+
 Route::get('/authormanage', function () {
     return view('authormanage');
 });
-
-Route::get('/book', [RoutingController::class, 'book']);
-
-
 
 Route::get('/editorial', function () {
     return view('editorial');
@@ -77,12 +62,6 @@ Route::get('/editorial', function () {
 Route::get('/editorialmanage', function () {
     return view('editorialmanage');
 });
-
-
-
-/*Route::get('/moderatexx', function () {
-    return view('moderatexx');
-});*/
 
 Route::get('/signup', function () {
     return view('signup2');
@@ -93,7 +72,9 @@ Route::get('/signin', function () {
 });
 
 
-
+/*Route::get('/moderatexx', function () {
+    return view('moderatexx');
+});*/
 
 /*
 Route::get('/', [RoutingController::class, 'home']);
