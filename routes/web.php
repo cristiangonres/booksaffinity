@@ -49,6 +49,7 @@ Route::post('/bookmanage', [BookManageController::class, 'insert']);
 Route::get('/filteredlist', [RoutingController::class, 'filterBooks']);
 Route::post('/filteredlist', [RoutingController::class, 'filterBooks']);
 
+
 Route::get('/book', [RoutingController::class, 'book']);
 
 Route::get('/authormanage', function () {
