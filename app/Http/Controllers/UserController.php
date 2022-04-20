@@ -10,9 +10,9 @@ class UserController extends Controller
 {
     function signUp(Request $request){
 
-        $userName=$request->get('userName');        
+        $userName=$request->get('userName');
         $userNameDB=Account::where('username', $userName)->get('username');
-        
+
         //Validacion de usuario.
         if($userNameDB=='[]'){
 
@@ -26,7 +26,7 @@ class UserController extends Controller
 
                 //Validacion de email repetido.
                 if($mailBD=='[]'){
-                    
+
                     //validacion de Password.
                     $uppercase=preg_match('@[A-Z]@', $pass);
                     $lowercase=preg_match('@[a-z]@', $pass);
@@ -37,7 +37,7 @@ class UserController extends Controller
                     $pass='';
                 }
                     if(!empty($pass)){
-                            
+
                             $newAccount=new Account();
                             $newAccount->username=$userName;
                             $newAccount->user_password=$pass;
@@ -46,9 +46,9 @@ class UserController extends Controller
                             $newAccount->description=$request->get('description');
                             $newAccount->save();
                             return view('afterSignup')->with('userName', 'Nuevo usuario registrado');
-                                                                                                     
+
                     } else {
-                        return view('afterSignup')->with('userName', 'Password no valido, debe contener minimo 6 digitos, Mayúsculas, minúsculas y numeros.');    
+                        return view('afterSignup')->with('userName', 'Password no valido, debe contener minimo 6 digitos, Mayúsculas, minúsculas y numeros.');
                     }
                 }else{
                     return view('afterSignup')->with('userName', 'E-mail ya registrado');
@@ -59,12 +59,16 @@ class UserController extends Controller
         } else {
             return view('afterSignup')->with('userName', 'El nombre de usuario ya existe');
         }
-        
-        
+
+
     }
 
     function signIn(Request $request){
+
         session_start();
+
+        $rc = new RoutingController();
+        $rchome = $rc->home();
 
         if(isset($_POST["sessionopen"])){
             $userName=$request->get('userName');
@@ -75,23 +79,26 @@ class UserController extends Controller
 
                 if($userDB[0]["user_password"] == $userPass){
                     echo '<script language="javascript">';
-                    echo 'alert("Registrado con exito")'; 
+                    echo 'alert("Registrado con exito")';
                     echo '</script>';
                     $_SESSION["role"]="admin";
                     $_SESSION["username"]=$userDB[0]["username"];
-                    return RoutingController::home();
+
+
+                    return $rchome;
+
                 } else {
                     echo '<script language="javascript">';
-                    echo 'alert("Password incorrecto")'; 
+                    echo 'alert("Password incorrecto")';
                     echo '</script>';
-                    return RoutingController::home();
+                    return $rchome;
                 }
 
             } else {
                 echo '<script language="javascript">';
-                echo 'alert("Usuario incorrecto")'; 
+                echo 'alert("Usuario incorrecto")';
                 echo '</script>';
-                return RoutingController::home();
+                return $rchome;
             }
         }
 
@@ -100,9 +107,9 @@ class UserController extends Controller
             session_reset();
             session_destroy();
             echo '<script language="javascript">';
-            echo 'alert("Session cerrada")'; 
+            echo 'alert("Session cerrada")';
             echo '</script>';
-            return RoutingController::home();
+            return $rchome;
         }
     }
 }

@@ -12,9 +12,10 @@ use App\Models\Author;
 use App\Models\Genre;
 use App\Models\BookGenre;
 
+
 class RoutingController extends Controller
 {
-   
+
     function home()
     {
         Paginator::defaultView('vendor\pagination\bootstrap-4');
@@ -39,7 +40,7 @@ class RoutingController extends Controller
         $data="";
 
         $genres = emptyGenre($genres);
-        
+
 
 
         if(isset($_POST['filter'])){
@@ -47,7 +48,7 @@ class RoutingController extends Controller
             $array= filtering();
             $data = $this->paginate($array);
 
-   
+
          }else{
             $data = Book::paginate(10);
          }
