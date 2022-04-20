@@ -81,7 +81,7 @@
 
       </div>
 
- 
+
     <div class="row col-12 mb-2">
   <div class="form-outline mb-4 col-6">
     <label class="form-label" for="synopsis">Sinopsis:</label>
@@ -100,8 +100,8 @@
 </form>
 
 
- <script>
-     
+<script>
+
 
 //This script is identical to the above JavaScript function.
 
@@ -153,7 +153,7 @@ function genre_new(){
     <?php
     $i=1;
     foreach ($genres as $genre){
-        
+
     echo "opt".$i." =document.createElement('option');
     opt".$i.".setAttribute('value', ".$genre->id.");
     opt".$i.".innerHTML='".$genre->genre_name."';
@@ -182,7 +182,7 @@ function genre_new(){
 }*/
 </script>
 
-<div class="form-outline">
+/*<div class="form-outline">
       <label class="form-label" for="genre1">Genero: </label>
       <select name="genre1" class="form-control">
             <?php
@@ -191,7 +191,11 @@ function genre_new(){
             }
             ?>
         </select>
-      </div>
+</div>*/
+
+@endsection
+
+@section('js')
 
 
 @endsection
