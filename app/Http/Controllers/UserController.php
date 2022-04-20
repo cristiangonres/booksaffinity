@@ -74,7 +74,8 @@ class UserController extends Controller
             $userName=$request->get('userName');
             $userDB=Account::where('username', $userName)->get();
 
-            if($userDB[0]["username"] == $userName){
+            
+            if(isset($userDB[0]["username"])){
                 $userPass=$request->get('userPass');
 
                 if($userDB[0]["user_password"] == $userPass){

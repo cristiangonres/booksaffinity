@@ -172,26 +172,8 @@ function genre_new(){
 
 }
 
-// function to delete the newly added set of elements
-/*function delIt(eleId)
-{
-	d = document;
-	var ele = d.getElementById(eleId);
-	var parentEle = d.getElementById('newlink');
-	parentEle.removeChild(ele);
-}*/
-</script>
 
-<div class="form-outline">
-      <label class="form-label" for="genre1">Genero: </label>
-      <select name="genre1" class="form-control">
-            <?php
-            foreach ($genres as $genre){
-                echo '<option value="'.$genre->id.'">'.$genre->genre_name.'</option>';
-            }
-            ?>
-        </select>
-      </div>
+</script>
 
 
 @endsection
