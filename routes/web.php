@@ -28,6 +28,7 @@ Route::get('/', [RoutingController::class, 'home']);
 Route::get('/home', [RoutingController::class, 'home']);
 
 Route::get('/books', [BookController::class, 'books']);
+Route::get('/booksbyyear/{year}', [BookController::class, 'booksbyyears']);
 Route::get('/book/{id}', [BookController::class, 'bookdetail']);
 
 Route::post('/afterSignup', [UserController::class, 'signUp']);

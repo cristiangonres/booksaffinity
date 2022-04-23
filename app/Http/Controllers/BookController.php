@@ -21,5 +21,12 @@ class BookController extends Controller
         return view('bookdetail', compact('book'));
     }
 
+    function booksbyyears($year){
+        $books=Book::whereYear('publi_date', $year)
+        ->get();
+        return view('booksbyyear', compact('books'));
+    }
+
+
 
 }

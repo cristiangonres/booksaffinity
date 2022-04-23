@@ -22,7 +22,7 @@ $country = $countries->find($thisBook->country_id)->country_name;
 
 
     <div class="m-4 p-2 shadow rounded border-bottom container border-top d-flex col-md-12 flex-shrink-0">
-    <div class="row">    
+    <div class="row">
         <div class="col-md-3">
             <div class="pro-img-details">
                 <img src="data:image/jpeg;base64,{{base64_encode($thisBook->cover)}}" width="150" height="200" alt="portada">

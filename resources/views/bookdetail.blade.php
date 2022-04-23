@@ -22,7 +22,7 @@
             <div class="m-bot15"> <strong>Autor : </strong> <span class="amount-old">
 
                 <?php
-
+        $year = date('Y', strtotime($book["0"]["publi_date"]));
         $nauth = count($book["0"]["authors"]);
         for ($i = 0; $i < $nauth; $i++) {
             echo '<a href="/author/' . $book["0"]["authors"][$i]['id'] . '"  style="text-decoration:none" class="link-dark"> ' . $book["0"]["authors"][$i]["author_name"]
@@ -35,7 +35,7 @@
                 ?>
 
             </span> </div>
-            <div class="m-bot15"> <strong>Fecha publicación : </strong> <span class="amount-old">{{$book["0"]["publi_date"]}}</span> </div>
+            <div class="m-bot15"> <strong>Fecha publicación : </strong> <span class="amount-old"><a href="/booksbyyear/{{$year}}"> {{$book["0"]["publi_date"]}}</a></span> </div>
             <div class="m-bot15"> <strong>Pais : </strong> <span class="amount-old"><a href="/countrybook/{{ $book['0']['country_id'] }}"> {{$book["0"]["country"]['country_name']}}</a></span> </div>
             <div class="m-bot15"> <strong>Editorial : </strong> <span class="amount-old"></span> </div>
             <div class="m-bot15"> <strong>Paginas : </strong> <span class="amount-old">{{$book["0"]["pages"]}}</span> </div>
@@ -96,24 +96,24 @@
 
     </div>
 
-    
+
 </div>
 
 <div class="m-4 p-2 shadow rounded border-bottom container border-top d-flex col-md-12 flex-shrink-0">
     <div class="row m-0">
         <div class="row m-1 border-bottom">
-        <div class="col-1 m-1 p-3"> 
+        <div class="col-1 m-1 p-3">
         <img src="../img/random-user.jpg" width="65" height="65" alt="user-img">
 
         </div>
 
         <div class="m-bot15 col-4 align-self-center ">
             <strong>Iker Rivero </strong>
-            <div class="m-bot15"> 
+            <div class="m-bot15">
                 <strong>Valoraciones: </strong> <span class="amount-old"> 26 </span>
-                <strong>Opiniones: </strong> <span class="amount-old"> 6 </span> 
+                <strong>Opiniones: </strong> <span class="amount-old"> 6 </span>
             </div>
-         
+
         </div>
         <div class="col-1 align-self-center">
         <span class="badge bg-primary "> Puntuación: 8.5 </span>
@@ -122,7 +122,7 @@
         <div class="col-3 align-self-end">
         <strong>Fecha publicación: </strong> <span class="amount-old">18/04/2022</span>
         </div>
-  
+
 
         </div>
 
@@ -138,7 +138,7 @@
 
     </div>
 
-    
+
 </div>
 
 @endsection
