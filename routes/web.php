@@ -41,8 +41,16 @@ Route::get('/countries', [CountryController::class, 'countries']);
 Route::get('/countrybook/{id}', [CountryController::class, 'booksByCountry']);
 Route::get('/countryauthor/{id}', [CountryController::class, 'authorsByCountry']);
 
+
 Route::get('/authors', [AuthorController::class, 'showAllAuthors']);
 Route::get('/author/{id}', [AuthorController::class, 'showOneAuthor']);
+Route::get('/authormanage',  [AuthorController::class, 'showAllAuthorsWithOptions']);
+Route::get('/authormanage/insertar',  function(){
+    return view('authorinsert');
+});
+Route::get('/authormanage/{id}',  [AuthorController::class, 'showOneAuthorsWithOptions']);
+Route::post('/afterEditAuthor', [AuthorController::class, 'updateORdeleteAutor']);
+Route::post('/afterSubmitAuthor', [AuthorController::class, 'submitAuthor']);
 
 Route::get('/bookmanage', [BookManageController::class, 'emptyRet']);
 Route::post('/bookmanage', [BookManageController::class, 'insert']);
@@ -73,6 +81,7 @@ Route::get('/signin', function () {
     return view('signin');
 });
 
+Route::post('/afterEditUser', [UserController::class, 'editORdeleteUser']);
 
 /*Route::get('/moderatexx', function () {
     return view('moderatexx');
