@@ -10,7 +10,17 @@ use Illuminate\Support\Facades\DB;
 class BookController extends Controller
 {
     function books(){
-        $books = Book::all();
+
+        $books = Book::query()
+        ->with(['authors'])
+        ->when(request('search'), function ($query) {
+            return $query->where('title', 'like', '%' . request ('search') . '%')
+                ->orWhereHas('authors', function ($q) {
+                    $q->where('author_name', 'like', '%' . request ('search') . '%');
+                });
+        })
+        ->paginate(5);
+
         return view('books', compact('books'));
 
     }

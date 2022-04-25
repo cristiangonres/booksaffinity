@@ -24,7 +24,7 @@ body {
 }
 .form-control {
 	box-shadow: none;
-	border-radius: 4px;        
+	border-radius: 4px;
 	border-color: #dfe3e8;
 }
 .navbar {
@@ -40,7 +40,7 @@ body {
 	padding-right: 50px;
 }
 .navbar .navbar-brand b {
-	color: #29c68c;		
+	color: #29c68c;
 }
 .navbar a, .navbar a:active {
 	color: #999;
@@ -90,7 +90,7 @@ body {
 .navbar .login-form .form-control {
 	max-width: 158px;
 	border-radius: 0 2px 2px 0;
-}    	
+}
 .navbar .navbar-right .dropdown-toggle::after {
 	display: none;
 }
@@ -107,7 +107,7 @@ body {
 	width: 505px;
 	padding: 20px;
 	left: auto;
-	right: 0;        
+	right: 0;
 }
 .navbar .login-dropdown .dropdown-toggle::after {
 	display: none;
@@ -149,7 +149,7 @@ body {
 		margin-bottom: 15px;
 	}
 	.navbar .input-group .form-control {
-		max-width: none;			
+		max-width: none;
 	}
 	.navbar .login-form .btn {
 		width: 100%;
@@ -162,7 +162,7 @@ body {
     if(session_status()==1){
       session_start();
     }
-    
+
     $admin=false;
 
     if(isset($_SESSION["role"])){
@@ -182,7 +182,7 @@ body {
     <img src="../img/book.png" width="80" height="50" class="d-inline-block align-top" alt="">
     BooksAffinity
   </a>
-  
+
 </nav>
     </header>
 
@@ -210,18 +210,18 @@ body {
       <a href="#" class="nav-item nav-link text-success">Novedades</a>
 			<a href="#" class="nav-item nav-link text-success">Contacto</a>
         </div>
-		<form class="navbar-form form-inline search-form">
+		<form class="navbar-form form-inline search-form" method="GET">
 			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Search...">
+				<input type="text" class="form-control" name="search" placeholder="Search...">
 				<span class="input-group-btn">
-					<button type="button" class="btn btn-default"><i class="fa fa-search"></i></button>
+					<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 				</span>
 			</div>
 		</form>
 
     <div class="navbar-nav ml-auto">
 			<div class="nav-item dropdown login-dropdown ">
-				<a href="#" data-toggle="dropdown" class="nav-item nav-link text-success dropdown-toggle" aria-expanded="false"><i class="fa fa-user-o"></i> 
+				<a href="#" data-toggle="dropdown" class="nav-item nav-link text-success dropdown-toggle" aria-expanded="false"><i class="fa fa-user-o"></i>
         <?php
             if($admin){
               if(isset($_SESSION["username"])){
@@ -307,7 +307,7 @@ body {
 <?php
 
 if ($admin){
-  
+
     echo '<li>
             <a href="/bookmanage" class="nav-link text-success">
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
