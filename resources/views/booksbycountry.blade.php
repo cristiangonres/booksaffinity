@@ -32,7 +32,7 @@
                     }
                 }
                 echo '</li></li>
-                                                                                                    <li>Año: <a href="#" style="text-decoration:none" class="link-dark">' .
+                                                                                                    <li>Año: <a href="/booksbyyear/'.$year.'" style="text-decoration:none" class="link-dark">' .
                     $year .
                     '</a></li></li>
                                                                                                     <li>Pais: <a href="#" style="text-decoration:none" class="link-dark">' .

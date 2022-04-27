@@ -9,7 +9,7 @@
                 $ngen = count($book->genres);
                 for ($i = 0; $i < $ngen; $i++) {
                     if($book->genres[$i]['id'] == $id){
-                        
+
 
                         echo '<div class="m-4 p-2 shadow rounded border-bottom container border-top d-flex col-md-12 flex-shrink-0">
                         <div class="container">
@@ -34,7 +34,7 @@
 
                         $year = date('Y', strtotime($book->publi_date));
                         echo '</li>
-                        <li>Año: <a href="#" style="text-decoration:none" class="link-dark">' . $year .'</a></li>
+                        <li>Año: <a href="/booksbyyear/'.$year.'" style="text-decoration:none" class="link-dark">' . $year .'</a></li>
                         <li>Pais: <a href="/countrybook/' . $book->country['id'] . '" style="text-decoration:none" class="link-dark">' . $book->country['country_name'] .'</a></li>
                         <li>Generos:';
 

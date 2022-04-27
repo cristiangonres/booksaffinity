@@ -172,8 +172,20 @@ function genre_new(){
 
 }
 
-
+// function to delete the newly added set of elements
+/*function delIt(eleId)
+{
+	d = document;
+	var ele = d.getElementById(eleId);
+	var parentEle = d.getElementById('newlink');
+	parentEle.removeChild(ele);
+}*/
 </script>
+
+
+@endsection
+
+@section('js')
 
 
 @endsection
