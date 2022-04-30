@@ -19,10 +19,21 @@ class RoutingController extends Controller
     function home()
     {
         Paginator::defaultView('vendor\pagination\bootstrap-4');
-        $data = Book::paginate(10);
+        $data = Book::query()
+        ->with(['authors'])
+        ->when(request('search'), function ($query) {
+            return $query->where('title', 'like', '%' . request ('search') . '%')
+                ->orWhereHas('authors', function ($q) {
+                    $q->where('author_name', 'like', '%' . request ('search') . '%');
+                });
+        })
+        ->paginate(5);
+
         return view('home', compact('data'));
 
     }
+
+
 
 
     function book(){

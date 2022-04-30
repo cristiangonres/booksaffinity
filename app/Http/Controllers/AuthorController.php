@@ -11,7 +11,14 @@ class AuthorController extends Controller
 {
     function showAllAuthors(){
         Paginator::defaultView('vendor\pagination\bootstrap-4');
-        $data=Author::paginate(10);
+        $data=Author::query()
+        ->when(request('search'), function ($query) {
+            return $query->where('author_name', 'like', '%' . request ('search') . '%')
+                ->orWhereHas('books', function ($q) {
+                    $q->where('title', 'like', '%' . request ('search') . '%');
+                });
+        })
+        ->paginate(10);
         return view('authors', compact('data'));
     }
 
@@ -20,4 +27,5 @@ class AuthorController extends Controller
         ->get();
         return view('author', compact('author'));
     }
+
 }
