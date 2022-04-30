@@ -28,18 +28,4 @@ class AuthorController extends Controller
         return view('author', compact('author'));
     }
 
-    function authors(){
-
-        $authors = Author::query()
-        ->when(request('search'), function ($query) {
-            return $query->where('author_name', 'like', '%' . request ('search') . '%')
-                ->orWhereHas('books', function ($q) {
-                    $q->where('title', 'like', '%' . request ('search') . '%');
-                });
-        })
-        ->paginate(5);
-
-        return view('authors', compact('a'));
-
-    }
 }
