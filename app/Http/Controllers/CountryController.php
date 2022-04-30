@@ -15,6 +15,8 @@ class CountryController extends Controller
         return view('countries', compact('countries'));
     }
 
+
+
     function booksByCountry($id){
         $books=Book::all();
         return view('booksbycountry', compact('books', 'id'));
