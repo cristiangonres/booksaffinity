@@ -16,6 +16,7 @@ if(!isset($book)){
   echo "<h2>Subir nuevo libro</h2><br>";
 }else{
   echo "<h2>Editando libro ".$book["0"]["title"]." - (Id: ".$book["0"]["id"].")</h2><br>";
+  echo '<input type="hidden" name="id" value= "'.$book["0"]["id"].'"/>';
 }
 ?>
   <!-- 2 column grid layout with text inputs for the first and last names -->
