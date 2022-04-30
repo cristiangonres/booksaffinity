@@ -31,7 +31,6 @@ class BookController extends Controller
         $book=Book::where('id', $id)
         ->get();
         $users=Account::all();
-        $accountBook = AccountBook::all();
 
         $nrate = count($book["0"]["accounts"]);
         $ncoments=0;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\RoutingController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Country;
@@ -100,5 +101,15 @@ class BookManageController extends Controller
         }
 
 
+    }
+
+    function editBook($id){
+    $book=Book::where('id', $id)
+    ->get();
+
+    $countries = Country::all();
+    $genres = Genre::all();
+
+    return view('bookmanage', compact('countries', 'genres', 'book'));
     }
 }
