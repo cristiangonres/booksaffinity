@@ -20,7 +20,12 @@ class Book extends Model
 
     public function accounts()
     {
-        return $this->belongsToMany(Account::class)->withPivot('book_id', 'account_id', 'rate')->using(AccountBook::class);
+        return $this->belongsToMany(Account::class)->withPivot('book_id', 'account_id', 'rate', 'review', 'title_review', 'date_review' )->using(AccountBook::class);
+    }
+
+    public function reviews()
+    {
+        return $this->belongsToMany(Account::class)->withPivot('book_id', 'account_id', 'review', 'title_review')->using(AccountBook::class);
     }
 
     public function country()

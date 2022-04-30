@@ -99,7 +99,21 @@
 
 </div>
 
-<div class="m-4 p-2 shadow rounded border-bottom container border-top d-flex col-md-12 flex-shrink-0">
+
+<?php
+$nrate = count($book["0"]["accounts"]);
+$n=0;
+for ($i = 0; $i < $nrate; $i++) {
+    
+    if($book["0"]["accounts"][$i]['pivot']['date_review'] != ""){
+        $n += 1;
+
+    }
+}
+
+for ($i = 0; $i < $n; $i++) {
+
+echo '<div class="m-4 p-2 shadow rounded border-bottom container border-top d-flex col-md-12 flex-shrink-0">
     <div class="row m-0">
         <div class="row m-1 border-bottom">
         <div class="col-1 m-1 p-3">
@@ -108,19 +122,19 @@
         </div>
 
         <div class="m-bot15 col-4 align-self-center ">
-            <strong>Iker Rivero </strong>
+            <strong>'.$userData[$i]["username"].'</strong>
             <div class="m-bot15">
-                <strong>Valoraciones: </strong> <span class="amount-old"> 26 </span>
-                <strong>Opiniones: </strong> <span class="amount-old"> 6 </span>
+                <strong>Valoraciones: </strong> <span class="amount-old"> '.$userData[$i]["rates"].' </span>
+                <strong>Opiniones: </strong> <span class="amount-old"> '.$userData[$i]["coments"].' </span>
             </div>
 
         </div>
         <div class="col-1 align-self-center">
-        <span class="badge bg-primary "> Puntuación: 8.5 </span>
+        <span class="badge bg-primary "> Puntuación: '.$userData[$i]["rate"].' </span>
         </div>
         <div class="col-2"></div>
         <div class="col-3 align-self-end">
-        <strong>Fecha publicación: </strong> <span class="amount-old">18/04/2022</span>
+        <strong>Fecha publicación: </strong> <span class="amount-old">'.$userData[$i]["date_review"].'</span>
         </div>
 
 
@@ -128,9 +142,9 @@
 
 
         <div class="col-12">
-        <div class="m-1 p-1"> <strong> ¡¡Un libro INIGUALABLE!! </strong> </div><br/>
+        <div class="m-1 p-1"> <strong> '.$userData[$i]["title_review"].' </strong> </div><br/>
             <p>
-            Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
+            '.$userData[$i]["review"].'
             </p>
 
         </div>
@@ -139,6 +153,8 @@
     </div>
 
 
-</div>
+</div>';
+}
+?>
 
 @endsection

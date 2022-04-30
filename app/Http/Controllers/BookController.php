@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Account;
+use App\Models\AccountBook;
 use Illuminate\Support\Facades\DB;
 
 
@@ -28,7 +30,51 @@ class BookController extends Controller
     function bookdetail($id){
         $book=Book::where('id', $id)
         ->get();
-        return view('bookdetail', compact('book'));
+        $users=Account::all();
+        $accountBook = AccountBook::all();
+
+        $nrate = count($book["0"]["accounts"]);
+        $ncoments=0;
+        for ($i = 0; $i < $nrate; $i++) {
+            
+            if($book["0"]["accounts"][$i]['pivot']['date_review'] != ""){
+                $ncoments += 1;
+            }
+        }
+
+        $userData = array();
+
+        for ($i = 0; $i < $ncoments; $i++) {
+
+            foreach($users as $user){
+
+                if($user->id ==$book["0"]["accounts"][$i]['pivot']['account_id'] ){
+                    $userData[$i]["username"] = $user->username;
+                    $accountRates=AccountBook::where('account_id', $user->id)->get();
+                    $rates=0;
+                    $comments=0;
+                    foreach($accountRates as $accountRate){
+                        if($accountRate->rate !=""){
+                            $rates ++;
+                        }
+                        if($accountRate->date_review !=""){
+                            $comments ++;
+                        }
+
+                    }
+                    $userData[$i]["rates"] = $rates;
+                    $userData[$i]["coments"] = $comments;
+
+                }
+            }
+            $userData[$i]["rate"] = $book["0"]["accounts"][$i]['pivot']['rate'];
+            $userData[$i]["date_review"] =$book["0"]["accounts"][$i]['pivot']['date_review'];
+            $userData[$i]["title_review"] = $book["0"]["accounts"][$i]['pivot']['title_review'];
+            $userData[$i]["review"] = $book["0"]["accounts"][$i]['pivot']['review'];
+        }
+
+
+        return view('bookdetail', compact('book', 'userData'));
     }
 
     function booksbyyears($year){
