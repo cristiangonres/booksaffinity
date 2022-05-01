@@ -10,22 +10,35 @@ function filtering()
     $books = Book::all();
     $array= array();
 
-    if(isset($_POST['category']) && $_POST['category']!="" ){
-
-        foreach($books as $book){
-        $ngen = count($book->genres);
-        for ($i = 0; $i < $ngen; $i++) {
-            if($book->genres[$i]['id'] == $_POST['category']){
-                array_push($array, $book);
+    if((isset($_POST['category']) && $_POST['category']!="") || (isset($_POST['country']) && $_POST['country']!="" )){
+        if($_POST['category']!=""  && $_POST['country']!="" ){
+            foreach($books as $book){
+            $ngen = count($book->genres);
+                for ($i = 0; $i < $ngen; $i++) {
+                    if($book->genres[$i]['id'] == $_POST['category'] && $book->country['id'] == $_POST['country']) {
+                        array_push($array, $book);
+                    }
+                }
+            }
+        } elseif ( $_POST['category']!=""){
+            foreach($books as $book){
+                $ngen = count($book->genres);
+                for ($i = 0; $i < $ngen; $i++) {
+                    if($book->genres[$i]['id'] == $_POST['category'] ) {
+                        array_push($array, $book);
+                    }
+                }
+            }
+        }  elseif( $_POST['country']!="" ){
+            foreach($books as $book){
+                if($book->country['id'] == $_POST['country']) {
+                    array_push($array, $book);
+                }
             }
         }
-    }
-    }else {
+    } else {
         $array = $books;
     }
-
-
-
 
     return $array;
 

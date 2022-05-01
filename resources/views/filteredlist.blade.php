@@ -56,13 +56,22 @@ input[type="radio"]:checked ~ label {
                     }
                     ?>
                     </select>
+                    <label class="form-label" for="country">País: </label>
+                    <select name="country" form="filtered">
+                        <option value=""></option>
+                    <?php
+                    foreach($countries as $country){
+                        echo '<option value="' . $country->id . '">' . $country->country_name . '</option>';
+                    }
+                    ?>
+                    </select>
 
-                    
+
                     <input type="submit" class="btn btn-dark" id="submit" name="filter" value="Filtrar">
 
 
-                    
-            </form> 
+
+            </form>
 
         </div>
 
@@ -96,7 +105,7 @@ input[type="radio"]:checked ~ label {
                         echo 'y';
                     }
                 }
-                
+
                 echo '</li>
 
                 <li>Año: <a href="#" style="text-decoration:none" class="link-dark">' .
@@ -194,19 +203,19 @@ input[type="radio"]:checked ~ label {
                     <td colspan="10">There are no data.</td>
                 </tr>
             @endif
-         
+
 
     <div class="mt-4 ml-4">
                     {!! $data->links() !!}
                 </div>
-    
+
 
     </div>
 
-                
 
 
-            
+
+
 
 
 @endsection
