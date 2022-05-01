@@ -83,6 +83,8 @@
                     {{count($book["0"]["accounts"])}}
 
                 </span>
+
+                <button class="btn btn-round btn-primary m-2" type="button" onclick="add_coment()">Añadir comentario</button>
         </div>
 
         <div class="col-12">
@@ -98,6 +100,39 @@
 
 
 </div>
+
+<div id="comentForm" class="d-none">
+
+  <div class="m-4 p-2 shadow rounded border-bottom container border-top d-flex col-md-12 flex-shrink-0">
+        <form class="p-5 ml-1 list-group-item" action="/book/{{$book['0']['id']}}" method="post">
+            @csrf
+
+
+            <div class="col-12">
+                <h4> Introduce un nuevo comentario: </h4>
+                <div class="m-1 p-1 col-5"> 
+                    <label class="form-label" for="title">Titulo: </label>
+                    <input type="text" name="title" class="form-control" value='' required />
+                </div>
+                <br/>
+                <label class="form-label" for="comment">Comentario:</label>
+                <textarea class="form-control" name="comment" rows="5" cols="100" required></textarea>
+                <div class="m-2 p-1 col-5">
+                    <button type="submit" name="save" class="btn btn-success btn-block mb-4">Guardar comentario</button>
+                </div>
+            </div>
+
+        </form>
+    </div> 
+</div>
+
+<script>
+function add_coment() {
+
+let form = document.getElementById("comentForm");
+form.removeAttribute("class");
+}
+</script>
 
 
 <?php

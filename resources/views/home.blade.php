@@ -171,22 +171,22 @@ input[type="radio"]:checked ~ label {
                 '</span>
 
                 </div>';
-                echo '<div class="col-1 buttons border-start"';
+               
 
                 if($admin){
-                  
+                    echo '<div class="col-1 buttons border-start"';
                     echo'
                     <li><a href="/bookmanage/'.$book->id.'" style="text-decoration:none" class="link-dark">
                     <button type="button" class="btn btn-default btn-sm">
                     <span class="glyphicon glyphicon-edit"></span> Edit
                     </button>
-                    </a></li>';
+                    </a></li>
+                    </div>';
 
                     
                 }
                 
                 echo'
-                </div>
                 </div>
                 </div>
                 </div>';

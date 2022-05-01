@@ -59,6 +59,9 @@ $country = $countries->find($thisBook->country_id)->country_name;
             <span class="badge bg-primary">9,0</span>
             <span class="badge bg-primary">172.184</span>
 
+            <button onclick="add_coment()">Añadir comentario</button>
+
+
         </div>
 
         <div class="col-12">
@@ -72,5 +75,11 @@ $country = $countries->find($thisBook->country_id)->country_name;
 
     </div>
 </div>
+
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Hello World";
+}
+</script>
 
 @endsection
