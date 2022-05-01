@@ -6,20 +6,31 @@
 
 
 <form class="p-5 ml-1 list-group-item" action="/bookmanage" method="post" enctype="multipart/form-data">
-<h1>Subir, editar y eliminar libros</h1><br>
 @csrf
+<?php
+if(!isset($book)){
+  $book["0"]["title"]="";
+  $book["0"]["synopsis"]="";
+  $book["0"]["pages"]="";
+  $book["0"]["publi_date"]="";
+  echo "<h2>Subir nuevo libro</h2><br>";
+}else{
+  echo "<h2>Editando libro ".$book["0"]["title"]." - (Id: ".$book["0"]["id"].")</h2><br>";
+  echo '<input type="hidden" name="id" value= "'.$book["0"]["id"].'"/>';
+}
+?>
   <!-- 2 column grid layout with text inputs for the first and last names -->
   <div class="row col-12 mb-2">
     <div class="col-4">
       <div class="form-outline">
       <label class="form-label" for="title">Titulo: </label>
-        <input type="text" name="title" class="form-control" value= "" />
+        <input type="text" name="title" class="form-control" value= '{{$book["0"]["title"]}}' />
       </div>
     </div>
     <div class="col-2">
       <div class="form-outline">
       <label class="form-label" for="pages">Paginas:</label>
-        <input type="number" name="pages" class="form-control" value= "" />
+        <input type="number" name="pages" class="form-control" value= '{{$book["0"]["pages"]}}' />
       </div>
       </div>
       </div>
@@ -28,7 +39,7 @@
     <div class="col-4">
     <div class="form-outline">
       <label class="form-label" for="pubDate">Fecha de publicacion:</label>
-        <input type="date" name="pubDate" class="form-control" value= "" />
+        <input type="date" name="pubDate" class="form-control" value= '{{$book["0"]["publi_date"]}}' />
       </div>
       </div>
       <div class="col-4">
@@ -37,7 +48,16 @@
         <select name="country" class="form-control">
             <?php
             foreach ($countries as $country){
+              if(isset($book["0"]["country_id"])){
+                if($book["0"]["country_id"]==$country->id){
+                  echo '<option value="'.$country->id.'" selected>'.$country->country_name.'</option>';
+                }else{
                 echo '<option value="'.$country->id.'">'.$country->country_name.'</option>';
+                }
+              }else{
+                echo '<option value="'.$country->id.'">'.$country->country_name.'</option>';
+                }
+                
             }
             ?>
         </select>
@@ -61,18 +81,54 @@
       <div id="insert" class="col-4">
       <div class="form-outline">
       <label class="form-label" for="author1">Autor: </label>
-        <input type="text" name="author1" class="form-control" />
+      <?php
+      $nauth=0;
+      if(isset($book["0"]["authors"])){
+        $nauth = count($book["0"]["authors"]);
+        for ($i = 0; $i < $nauth; $i++) {
+            echo '<input type="text" name="author'.$i.'" class="form-control" value="'.$book["0"]["authors"][$i]["author_name"].'" />';
+        }
+      }else{
+        echo '<input type="text" name="author1" class="form-control" />';
+      }
+
+      ?>
       </div>
       <a href="javascript:author_new()">Añadir autor </a>
       </div>
     <div id="ins" class="col-4">
       <div class="form-outline">
       <label class="form-label" for="genre1">Genero: </label>
-      <select name="genre1" class="form-control">
-            <?php
+      
+
+        <?php
+        $ngen =0;
+        if(isset($book["0"]["genres"])){
+          $ngen = count($book["0"]["genres"]);
+          for ($i = 0; $i < $ngen; $i++) {
+            echo '<select name="genre'.$i.'" class="form-control">';
             foreach ($genres as $genre){
+              if($book["0"]["genres"][$i]['id']==$genre->id){
+                echo '<option value="'.$genre->id.'" selected>'.$genre->genre_name.'</option>';
+              }else{
+                echo '<option value="'.$genre->id.'">'.$genre->genre_name.'</option>';
+              }
+              
+          }
+          echo '</select>';
+          }
+          
+        }else{
+          echo '<select name="genre1" class="form-control">';
+          foreach ($genres as $genre){
                 echo '<option value="'.$genre->id.'">'.$genre->genre_name.'</option>';
             }
+            echo '</select>';
+        }
+        ?>
+            <?php
+            
+
             ?>
         </select>
       </div>
@@ -85,7 +141,7 @@
     <div class="row col-12 mb-2">
   <div class="form-outline mb-4 col-6">
     <label class="form-label" for="synopsis">Sinopsis:</label>
-    <textarea class="form-control" name="synopsis" rows="4"></textarea>
+    <textarea class="form-control" name="synopsis" rows="4">{{$book["0"]["synopsis"]}}</textarea>
   </div>
   </div>
 
@@ -104,8 +160,10 @@
 
 
 //This script is identical to the above JavaScript function.
+<?php
+echo 'var c='.($nauth+1).';';
 
-var c=1;
+?>
 
 
 function author_new(){
@@ -131,7 +189,10 @@ function author_new(){
 
 }
 
-var d=1;
+<?php
+echo 'var d='.($ngen+1).';';
+
+?>
 
 function genre_new(){
     d++;

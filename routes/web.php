@@ -46,6 +46,7 @@ Route::get('/author/{id}', [AuthorController::class, 'showOneAuthor']);
 
 Route::get('/bookmanage', [BookManageController::class, 'emptyRet']);
 Route::post('/bookmanage', [BookManageController::class, 'insert']);
+Route::get('/bookmanage/{id}', [BookManageController::class, 'editBook']);
 
 Route::get('/filteredlist', [RoutingController::class, 'filterBooks']);
 Route::post('/filteredlist', [RoutingController::class, 'filterBooks']);

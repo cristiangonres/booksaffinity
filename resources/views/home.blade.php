@@ -43,8 +43,20 @@ input[type="radio"]:checked ~ label {
 }
 </style>
 
+<?php
+    if(session_status()==1){
+      session_start();
+    }
 
+    $admin=false;
 
+    if(isset($_SESSION["role"])){
+      if($_SESSION["role"]=="admin"){
+              $admin=true;
+      }
+    }
+
+    ?>
 
     <div class="row">
         <div class="mt-4 ml-4">
@@ -54,11 +66,12 @@ input[type="radio"]:checked ~ label {
                 @foreach($data as $key => $book)
                 <?php
 
+
                 $year = date('Y', strtotime($book->publi_date));
                 echo '<div class="m-4 p-2 shadow rounded border-bottom container border-top d-flex col-md-12 flex-shrink-0">
                 <div class="container">
                 <div class="row justify-content-start">
-                <div class="col-3 portada ">
+                <div class="col-2 portada ">
                 <a href="/book/' . $book->id . '"><img src="data:image/jpeg;base64,' . base64_encode($book->cover) . '" width="150" height="200" alt="portada"></a>
                 </div>
 
@@ -94,7 +107,7 @@ input[type="radio"]:checked ~ label {
                 </ul>
                 </div>';
 
-                echo '<div class="col-3 ratings d-flex align-items-center flex-column border-start">
+                echo '<div class="col-2 ratings d-flex align-items-center flex-column border-start">
                 <br>
                 <form>
 
@@ -157,8 +170,23 @@ input[type="radio"]:checked ~ label {
                     count($book->accounts) .
                 '</span>
 
-                </div>
+                </div>';
+                echo '<div class="col-1 buttons border-start"';
 
+                if($admin){
+                  
+                    echo'
+                    <li><a href="/bookmanage/'.$book->id.'" style="text-decoration:none" class="link-dark">
+                    <button type="button" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-edit"></span> Edit
+                    </button>
+                    </a></li>';
+
+                    
+                }
+                
+                echo'
+                </div>
                 </div>
                 </div>
                 </div>';
