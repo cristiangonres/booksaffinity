@@ -48,10 +48,11 @@ class RoutingController extends Controller
     function filterBooks(){
         Paginator::defaultView('vendor\pagination\bootstrap-4');
         $genres = Genre::all();
+        $countries = Country::all();
         $data="";
 
         $genres = emptyGenre($genres);
-
+        $countries = emptyCountry($countries);
 
 
         if(isset($_POST['filter'])){
@@ -64,7 +65,7 @@ class RoutingController extends Controller
             $data = Book::paginate(10);
          }
 
-         return view('filteredlist', compact('data', 'genres'));
+         return view('filteredlist', compact('data', 'genres', 'countries'));
 
     }
 
