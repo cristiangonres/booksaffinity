@@ -62,7 +62,11 @@ class RoutingController extends Controller
 
 
          }else{
-            $data = Book::paginate(10);
+            if(isset($_POST['orderBy'])){
+                $orderBy=$_POST['orderBy'];
+            } else {$orderBy = 'title'; }
+            $data = Book::orderBy($orderBy, 'asc')
+            ->paginate(10);
          }
 
          return view('filteredlist', compact('data', 'genres', 'countries'));

@@ -93,6 +93,16 @@ input[type="radio"]:checked ~ label {
         <div class="mt-4 ml-4">
             {!! $data->links() !!}
         </div>
+        <div class="mt-4 ml-4">
+
+            <label class="form-label" for="orderBy"> Ordenar por: </label>
+            <select  name="orderBy" form="orderBy">
+                <option value="publi_date">Año</option>
+                <option value="title">Título</option>
+                <option value="country">País</option>
+              </select>
+
+        </div>
         @if(!empty($data) && $data->count())
                 @foreach($data as $book)
                 <?php
@@ -225,11 +235,6 @@ input[type="radio"]:checked ~ label {
 
 
     </div>
-
-
-
-
-
 
 
 @endsection
