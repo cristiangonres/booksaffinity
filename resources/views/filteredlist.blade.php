@@ -47,7 +47,7 @@ input[type="radio"]:checked ~ label {
             <form action="/filteredlist"  method="post" id="filtered"><br>
                 @csrf
 
-                    <label class="form-label" for="category">Genero: </label>
+                    <label class="form-label" for="category">Género: </label>
                     <select name="category" form="filtered">
                         <option value=""></option>
                     <?php
@@ -65,8 +65,14 @@ input[type="radio"]:checked ~ label {
                     }
                     ?>
                     </select>
-
-
+                    <label class="form-label" for="yearFilm">Año: </label>
+                    <?php $years = range( strftime("%Y", time()) , 868); ?>
+                    <select  name="yearFilm" form="filtered">
+                        <option value=""></option>
+                        <?php foreach($years as $year) : ?>
+                          <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                        <?php endforeach; ?>
+                      </select>
                     <input type="submit" class="btn btn-dark" id="submit" name="filter" value="Filtrar">
 
 
