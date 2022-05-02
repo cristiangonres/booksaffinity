@@ -23,6 +23,7 @@ class RoutingController extends Controller
         ->with(['authors'])
         ->when(request('search'), function ($query) {
             return $query->where('title', 'like', '%' . request ('search') . '%')
+            ->orWhere('original_title', 'like', '%' . request ('search') . '%')
                 ->orWhereHas('authors', function ($q) {
                     $q->where('author_name', 'like', '%' . request ('search') . '%');
                 });
