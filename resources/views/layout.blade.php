@@ -214,7 +214,7 @@ body {
       <a href="#" class="nav-item nav-link text-success">Novedades</a>
 			<a href="#" class="nav-item nav-link text-success">Contacto</a>
         </div>
-		<form class="navbar-form form-inline search-form" method="GET">
+		<form class="navbar-form form-inline search-form" method="GET" action="home">
 			<div class="input-group">
 				<input type="text" class="form-control" name="search" placeholder="Search...">
 				<span class="input-group-btn">

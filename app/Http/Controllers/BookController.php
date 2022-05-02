@@ -20,8 +20,7 @@ class BookController extends Controller
                 ->orWhereHas('authors', function ($q) {
                     $q->where('author_name', 'like', '%' . request ('search') . '%');
                 });
-        })
-        ->paginate(5);
+        }) ->orderBy('title', 'asc')->get();
 
         return view('books', compact('books'));
 
@@ -35,7 +34,7 @@ class BookController extends Controller
         $nrate = count($book["0"]["accounts"]);
         $ncoments=0;
         for ($i = 0; $i < $nrate; $i++) {
-            
+
             if($book["0"]["accounts"][$i]['pivot']['date_review'] != ""){
                 $ncoments += 1;
             }
@@ -84,7 +83,6 @@ class BookController extends Controller
 
     function addComment($idBook, Request $request){
         session_start();
-
         $findComment = AccountBook::where('account_id', $_SESSION['user_id'])
         ->where('book_id', $idBook)
         ->first();
@@ -106,9 +104,6 @@ class BookController extends Controller
         $bcDetail = $bc->bookdetail($idBook);
 
     return $bcDetail;
-
     }
-
-
 
 }

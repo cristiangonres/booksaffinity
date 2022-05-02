@@ -65,9 +65,17 @@ input[type="radio"]:checked ~ label {
                     }
                     ?>
                     </select>
-                    <label class="form-label" for="yearFilm">Año: </label>
+                    <label class="form-label" for="yearDesde"> Desde año: </label>
                     <?php $years = range( strftime("%Y", time()) , 868); ?>
-                    <select  name="yearFilm" form="filtered">
+                    <select  name="yearDesde" form="filtered">
+                        <option value=""></option>
+                        <?php foreach($years as $year) : ?>
+                          <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                      <label class="form-label" for="yearHasta"> Hasta año: </label>
+                    <?php $years = range( strftime("%Y", time()) , 868); ?>
+                    <select  name="yearHasta" form="filtered">
                         <option value=""></option>
                         <?php foreach($years as $year) : ?>
                           <option value="<?php echo $year; ?>"><?php echo $year; ?></option>

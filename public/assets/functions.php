@@ -11,17 +11,89 @@ function filtering()
     $array= array();
 
 
-    if((isset($_POST['category']) && $_POST['category']!="") || (isset($_POST['country']) && $_POST['country']!="") || (isset($_POST['yearFilm']) && $_POST['yearFilm']!="")){
-        if($_POST['category']!=""  && $_POST['country']!="" && $_POST['yearFilm']!=""){
+    if((isset($_POST['category']) && $_POST['category']!="") || (isset($_POST['country']) && $_POST['country']!="") || (isset($_POST['yearDesde']) && $_POST['yearDesde']!="") || (isset($_POST['yearHasta']) && $_POST['yearHasta']!="")){
+        if($_POST['category']!=""  && $_POST['country']!="" && $_POST['yearDesde']!="" && $_POST['yearHasta']!="" ){
             foreach($books as $book){
             $ngen = count($book->genres);
+            $datebook = date("Y", strtotime($book->publi_date));
                 for ($i = 0; $i < $ngen; $i++) {
-                    if($book->genres[$i]['id'] == $_POST['category'] && $book->country['id'] == $_POST['country'] && date("Y", strtotime($book->publi_date)) == $_POST['yearFilm']) {
+                    if($book->genres[$i]['id'] == $_POST['category'] && $book->country['id'] == $_POST['country'] && $datebook >= $_POST['yearDesde'] && $datebook <= $_POST['yearHasta']) {
                         array_push($array, $book);
                     }
                 }
             }
-        } elseif($_POST['category']!=""  && $_POST['country']!="" ){
+        }elseif($_POST['category']!=""  && $_POST['country']!="" && $_POST['yearDesde']!=""){
+            foreach($books as $book){
+            $ngen = count($book->genres);
+            $datebook = date("Y", strtotime($book->publi_date));
+                for ($i = 0; $i < $ngen; $i++) {
+                    if($book->genres[$i]['id'] == $_POST['category'] && $book->country['id'] == $_POST['country'] && $datebook >= $_POST['yearDesde']) {
+                        array_push($array, $book);
+                    }
+                }
+            }
+        } elseif($_POST['category']!=""  && $_POST['country']!="" && $_POST['yearHasta']!=""){
+            foreach($books as $book){
+            $ngen = count($book->genres);
+            $datebook = date("Y", strtotime($book->publi_date));
+                for ($i = 0; $i < $ngen; $i++) {
+                    if($book->genres[$i]['id'] == $_POST['category'] && $book->country['id'] == $_POST['country'] && $datebook >= $_POST['yearHasta']) {
+                        array_push($array, $book);
+                    }
+                }
+            }
+        }elseif($_POST['category']!=""  && $_POST['yearDesde']!="" && $_POST['yearHasta']!=""){
+            foreach($books as $book){
+            $ngen = count($book->genres);
+            $datebook = date("Y", strtotime($book->publi_date));
+                for ($i = 0; $i < $ngen; $i++) {
+                    if($book->genres[$i]['id'] == $_POST['category']  && $datebook >= $_POST['yearDesde'] && $datebook <= $_POST['yearHasta'])    {
+                        array_push($array, $book);
+                    }
+                }
+            }
+        } elseif($_POST['category']!=""  && $_POST['yearDesde']!="" ){
+            foreach($books as $book){
+            $ngen = count($book->genres);
+            $datebook = date("Y", strtotime($book->publi_date));
+                for ($i = 0; $i < $ngen; $i++) {
+                    if($book->genres[$i]['id'] == $_POST['category']  && $datebook >= $_POST['yearDesde'])    {
+                        array_push($array, $book);
+                    }
+                }
+            }
+        }elseif($_POST['category']!=""   && $_POST['yearHasta']!=""){
+            foreach($books as $book){
+            $ngen = count($book->genres);
+            $datebook = date("Y", strtotime($book->publi_date));
+                for ($i = 0; $i < $ngen; $i++) {
+                    if($book->genres[$i]['id'] == $_POST['category'] && $datebook <= $_POST['yearHasta'])    {
+                        array_push($array, $book);
+                    }
+                }
+            }
+        }elseif($_POST['country']!="" && $_POST['yearDesde']!="" && $_POST['yearHasta']!=""){
+            foreach($books as $book){
+                $datebook = date("Y", strtotime($book->publi_date));
+                    if( $book->country['id'] == $_POST['country'] && $datebook >= $_POST['yearDesde'] && $datebook <= $_POST['yearHasta']) {
+                        array_push($array, $book);
+                    }
+                }
+        } elseif($_POST['country']!="" && $_POST['yearDesde']!="" ){
+            foreach($books as $book){
+                $datebook = date("Y", strtotime($book->publi_date));
+                    if( $book->country['id'] == $_POST['country'] && $datebook >= $_POST['yearDesde']) {
+                        array_push($array, $book);
+                    }
+                }
+        }elseif($_POST['country']!=""  && $_POST['yearHasta']!=""){
+            foreach($books as $book){
+                $datebook = date("Y", strtotime($book->publi_date));
+                    if( $book->country['id'] == $_POST['country'] && $datebook <= $_POST['yearHasta']) {
+                        array_push($array, $book);
+                    }
+                }
+        }elseif($_POST['category']!=""  && $_POST['country']!="" ){
             foreach($books as $book){
             $ngen = count($book->genres);
                 for ($i = 0; $i < $ngen; $i++) {
@@ -30,22 +102,7 @@ function filtering()
                     }
                 }
             }
-        }elseif($_POST['category']!=""  && $_POST['yearFilm']!=""){
-            foreach($books as $book){
-            $ngen = count($book->genres);
-                for ($i = 0; $i < $ngen; $i++) {
-                    if($book->genres[$i]['id'] == $_POST['category']  && date("Y", strtotime($book->publi_date)) == $_POST['yearFilm']) {
-                        array_push($array, $book);
-                    }
-                }
-            }
-        }elseif($_POST['country']!="" && $_POST['yearFilm']!="" ){
-            foreach($books as $book){
-                    if( $book->country['id'] == $_POST['country'] && date("Y", strtotime($book->publi_date)) == $_POST['yearFilm'] ) {
-                        array_push($array, $book);
-                    }
-                }
-        } elseif ( $_POST['category']!=""){
+        }elseif ( $_POST['category']!=""){
             foreach($books as $book){
                 $ngen = count($book->genres);
                 for ($i = 0; $i < $ngen; $i++) {
@@ -60,13 +117,21 @@ function filtering()
                     array_push($array, $book);
                 }
             }
-        } elseif( $_POST['yearFilm']!="" ){
+        } elseif( $_POST['yearDesde']!="" ){
             foreach($books as $book){
-                if(date("Y", strtotime($book->publi_date)) == $_POST['yearFilm']) {
+                $datebook = date("Y", strtotime($book->publi_date));
+                if($datebook >= $_POST['yearDesde']) {
                     array_push($array, $book);
                 }
             }
-        } else {
+        } elseif( $_POST['yearHasta']!="" ){
+            foreach($books as $book){
+                $datebook = date("Y", strtotime($book->publi_date));
+                if($datebook <= $_POST['yearHasta']) {
+                    array_push($array, $book);
+                }
+            }
+        }else {
         $array = $books;
     }
 }
