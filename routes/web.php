@@ -30,6 +30,7 @@ Route::get('/home', [RoutingController::class, 'home']);
 Route::get('/books', [BookController::class, 'books']);
 Route::get('/booksbyyear/{year}', [BookController::class, 'booksbyyears']);
 Route::get('/book/{id}', [BookController::class, 'bookdetail']);
+Route::post('/book/{id}', [BookController::class, 'addComment']);
 
 Route::post('/afterSignup', [UserController::class, 'signUp']);
 Route::post('/home', [UserController::class, 'signIn']);

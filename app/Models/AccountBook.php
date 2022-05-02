@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class AccountBook extends Pivot
 {
+    public $timestamps = false;
     use HasFactory;
+
 }
