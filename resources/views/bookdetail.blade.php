@@ -35,6 +35,7 @@
                 ?>
 
             </span> </div>
+            <div class="m-bot15"> <strong>Título Original : </strong> <span class="amount-old">{{$book["0"]["original_title"]}}</span> </div>
             <div class="m-bot15"> <strong>Fecha publicación : </strong> <span class="amount-old"><a href="/booksbyyear/{{$year}}"> {{$book["0"]["publi_date"]}}</a></span> </div>
             <div class="m-bot15"> <strong>Pais : </strong> <span class="amount-old"><a href="/countrybook/{{ $book['0']['country_id'] }}"> {{$book["0"]["country"]['country_name']}}</a></span> </div>
             <div class="m-bot15"> <strong>Editorial : </strong> <span class="amount-old"></span> </div>
@@ -110,7 +111,7 @@
 
             <div class="col-12">
                 <h4> Introduce un nuevo comentario: </h4>
-                <div class="m-1 p-1 col-5"> 
+                <div class="m-1 p-1 col-5">
                     <label class="form-label" for="title">Titulo: </label>
                     <input type="text" name="title" class="form-control" value='' required />
                 </div>
@@ -123,7 +124,7 @@
             </div>
 
         </form>
-    </div> 
+    </div>
 </div>
 
 <script>
@@ -139,7 +140,7 @@ form.removeAttribute("class");
 $nrate = count($book["0"]["accounts"]);
 $n=0;
 for ($i = 0; $i < $nrate; $i++) {
-    
+
     if($book["0"]["accounts"][$i]['pivot']['date_review'] != ""){
         $n += 1;
 
