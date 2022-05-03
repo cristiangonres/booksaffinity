@@ -81,6 +81,13 @@ input[type="radio"]:checked ~ label {
                           <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
                         <?php endforeach; ?>
                       </select>
+                      <label class="form-label" for="orderBy"> Ordenar por: </label>
+                      <select  name="orderBy" form="filtered">
+                          <option value="title">Título</option>
+                          <option value="publi_date">Año</option>
+                          <option value="country">País</option>
+                          <option value="score">Valoración</option>
+                      </select>
                     <input type="submit" class="btn btn-dark" id="submit" name="filter" value="Filtrar">
 
 
@@ -92,16 +99,6 @@ input[type="radio"]:checked ~ label {
         <div class="row">
         <div class="mt-4 ml-4">
             {!! $data->links() !!}
-        </div>
-        <div class="mt-4 ml-4">
-
-            <label class="form-label" for="orderBy"> Ordenar por: </label>
-            <select  name="orderBy" form="orderBy">
-                <option value="publi_date">Año</option>
-                <option value="title">Título</option>
-                <option value="country">País</option>
-              </select>
-
         </div>
         @if(!empty($data) && $data->count())
                 @foreach($data as $book)
@@ -157,14 +154,9 @@ input[type="radio"]:checked ~ label {
 
                 <p class="clasificacion">
                 <span class="badge bg-primary"> Puntuación: ';
-                $nrate = count($book->accounts);
-                $rate = 0;
-                for ($i = 0; $i < $nrate; $i++) {
-                    $rate += $book->accounts[$i]['pivot']['rate'];
-                }
-                $avgrate = $nrate > 0 ? round($rate / $nrate, 2) : 0;
-                echo $avgrate;
-                $halfAverage = round($avgrate/2, 0);
+
+                echo $book->score + 1;
+                $halfAverage = round($book->score/2, 0);
                 $star5="";$star4="";$star3="";$star2="";$star1="";
 
                 switch($halfAverage){
@@ -235,6 +227,11 @@ input[type="radio"]:checked ~ label {
 
 
     </div>
+
+
+
+
+
 
 
 @endsection

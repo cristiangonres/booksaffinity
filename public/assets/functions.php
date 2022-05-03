@@ -4,10 +4,15 @@ use Illuminate\Support\Collection;
 use App\Models\BookGenre;
 use App\Models\Book;
 
+$orderBy = 'title';
 
 function filtering()
 {
-    $books = Book::all();
+    if(isset($_POST['orderBy'])){
+        $orderBy=$_POST['orderBy'];
+
+    } else {$orderBy = 'title'; }
+    $books = Book::all()->sortByDesc($orderBy);
     $array= array();
 
 
@@ -111,13 +116,13 @@ function filtering()
                     }
                 }
             }
-        }  elseif( $_POST['country']!="" ){
+        }elseif( $_POST['country']!="" ){
             foreach($books as $book){
                 if($book->country['id'] == $_POST['country']) {
                     array_push($array, $book);
                 }
             }
-        } elseif( $_POST['yearDesde']!="" ){
+        }elseif( $_POST['yearDesde']!="" ){
             foreach($books as $book){
                 $datebook = date("Y", strtotime($book->publi_date));
                 if($datebook >= $_POST['yearDesde']) {
@@ -131,10 +136,15 @@ function filtering()
                     array_push($array, $book);
                 }
             }
-        }else {
-        $array = $books;
+        }
+
+
+
+    } else {
+        foreach($books as $book){
+            array_push($array, $book);
+        }
     }
-}
 
     return $array;
 
@@ -176,5 +186,6 @@ function emptyCountry($countries){
 
     return $array;
 }
+
 
 ?>

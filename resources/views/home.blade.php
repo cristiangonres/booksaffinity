@@ -113,14 +113,8 @@ input[type="radio"]:checked ~ label {
 
                 <p class="clasificacion">
                 <span class="badge bg-primary"> Puntuación: ';
-                $nrate = count($book->accounts);
-                $rate = 0;
-                for ($i = 0; $i < $nrate; $i++) {
-                    $rate += $book->accounts[$i]['pivot']['rate'];
-                }
-                $avgrate = $nrate > 0 ? round($rate / $nrate, 2) : 0;
-                echo $avgrate;
-                $halfAverage = round($avgrate/2, 0);
+                echo $book->score + 1;
+                $halfAverage = round($book->score/2, 0);
                 $star5="";$star4="";$star3="";$star2="";$star1="";
 
                 switch($halfAverage){
@@ -171,7 +165,7 @@ input[type="radio"]:checked ~ label {
                 '</span>
 
                 </div>';
-               
+
 
                 if($admin){
                     echo '<div class="col-1 buttons border-start"';
@@ -183,9 +177,9 @@ input[type="radio"]:checked ~ label {
                     </a></li>
                     </div>';
 
-                    
+
                 }
-                
+
                 echo'
                 </div>
                 </div>
