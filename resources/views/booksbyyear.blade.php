@@ -54,13 +54,7 @@
 
         <div class="col-3 ratings text-center align-bottom border-start">
         <span class="badge bg-primary"> Puntuación: ';
-        $nrate = count($book->accounts);
-        $rate = 0;
-        for ($i = 0; $i < $nrate; $i++) {
-            $rate += $book->accounts[$i]['pivot']['rate'];
-        }
-        $avgrate = $nrate > 0 ? round($rate / $nrate, 2) : 0;
-        echo $avgrate .
+            echo $book->score + 1 .
         '</span>
         <span class="badge bg-primary"> Votos: ' .
             count($book->accounts) .

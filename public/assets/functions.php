@@ -42,7 +42,7 @@ function filtering()
             $ngen = count($book->genres);
             $datebook = date("Y", strtotime($book->publi_date));
                 for ($i = 0; $i < $ngen; $i++) {
-                    if($book->genres[$i]['id'] == $_POST['category'] && $book->country['id'] == $_POST['country'] && $datebook >= $_POST['yearHasta']) {
+                    if($book->genres[$i]['id'] == $_POST['category'] && $book->country['id'] == $_POST['country'] && $datebook <= $_POST['yearHasta']) {
                         array_push($array, $book);
                     }
                 }
