@@ -63,9 +63,7 @@ class RoutingController extends Controller
 
 
          }else{
-            if(isset($_POST['orderBy'])){
-                $orderBy=$_POST['orderBy'];
-            } else {$orderBy = 'title'; }
+            $orderBy = 'title';
             $data = Book::orderBy($orderBy, 'asc')
             ->paginate(10);
          }
@@ -78,6 +76,7 @@ class RoutingController extends Controller
 
     public function paginate($items, $perPage = 10, $page = null, $options = [])
     {
+        print_r($options);
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof Collection ? $items : Collection::make($items);
         return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
