@@ -51,6 +51,7 @@ class RoutingController extends Controller
         $genres = Genre::all();
         $countries = Country::all();
         $data="";
+        $buleano= true;
 
         $genres = emptyGenre($genres);
         $countries = emptyCountry($countries);
@@ -58,25 +59,25 @@ class RoutingController extends Controller
 
         if(isset($_POST['filter'])){
 
-            $array= filtering();
-            $data = $this->paginate($array);
-
-
+            $data= filtering();
+            /*$data = $this->paginateion($array)*/;
+   $buleano=false;
+         
          }else{
-            if(isset($_POST['orderBy'])){
-                $orderBy=$_POST['orderBy'];
-            } else {$orderBy = 'title'; }
+            echo "cosas";
+                $orderBy= "title";
+            
             $data = Book::orderBy($orderBy, 'asc')
             ->paginate(10);
          }
 
-         return view('filteredlist', compact('data', 'genres', 'countries'));
+         return view('filteredlist', compact('data', 'genres', 'countries', 'buleano'));
 
     }
 
 
 
-    public function paginate($items, $perPage = 10, $page = null, $options = [])
+    public function paginateion($items, $perPage = 10, $page = null, $options = [])
     {
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof Collection ? $items : Collection::make($items);

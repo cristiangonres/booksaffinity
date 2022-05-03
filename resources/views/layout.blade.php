@@ -169,10 +169,10 @@ body {
 
     $admin=false;
 
-    if(isset($_SESSION["role"])){
-      if($_SESSION["role"]=="admin"){
-              $admin=true;
-      }
+    if(isset($_SESSION["rol"])){
+      
+        $admin=true;
+    
     }
 
     ?>

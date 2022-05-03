@@ -83,22 +83,33 @@ class BookController extends Controller
 
     function addComment($idBook, Request $request){
         session_start();
+        
         $findComment = AccountBook::where('account_id', $_SESSION['user_id'])
         ->where('book_id', $idBook)
         ->first();
 
+        print_r($findComment);
+      
+
+        if($findComment!=''){
+        $findComment->account_id = $_SESSION["user_id"];
+        $findComment->book_id = $idBook;
+        $findComment->title_review= $request->get("title"); 
+        $findComment->review = $request->get("comment");
+        $findComment->date_review = date('Y-m-d');
+        $findComment->save();
+
+        }else{
+
         $newComment=new AccountBook();
-
-        if($findComment!='[]'){
-            $newComment=$findComment;
-        }
-
         $newComment->account_id = $_SESSION["user_id"];
         $newComment->book_id = $idBook;
-        $newComment->title_review = $request->get("title");
+        $newComment->title_review= $request->get("title"); 
         $newComment->review = $request->get("comment");
         $newComment->date_review = date('Y-m-d');
         $newComment->save();
+        }
+
 
         $bc = new BookController();
         $bcDetail = $bc->bookdetail($idBook);

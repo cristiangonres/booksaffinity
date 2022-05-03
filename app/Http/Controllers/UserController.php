@@ -79,12 +79,14 @@ class UserController extends Controller
                 $userPass=$request->get('userPass');
 
                 if($userDB[0]["user_password"] == $userPass){
-                    echo '<script language="javascript">';
-                    echo 'alert("Logeado con exito")';
-                    echo '</script>';
-                    $_SESSION["role"]=$userDB[0]["role"];
+
+                    $_SESSION["rol"]=$userDB[0]["rol"];
                     $_SESSION["username"]=$userDB[0]["username"];
                     $_SESSION["user_id"]=$userDB[0]["id"];
+
+                    echo '<script language="javascript">';
+                    echo 'alert("Logeado con exito '.$_SESSION["user_id"].$_SESSION["username"].$_SESSION["rol"].'")';
+                    echo '</script>';
 
 
                     return $rchome;
