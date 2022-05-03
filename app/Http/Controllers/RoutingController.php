@@ -59,10 +59,9 @@ class RoutingController extends Controller
 
         if(isset($_POST['filter'])){
 
-            $data= filtering();
-            /*$data = $this->paginateion($array)*/;
-   $buleano=false;
-         
+            $array= filtering();
+            $data = $this->paginate($array);
+
          }else{
             $orderBy = 'title';
             $data = Book::orderBy($orderBy, 'asc')
@@ -75,7 +74,7 @@ class RoutingController extends Controller
 
 
 
-    public function paginateion($items, $perPage = 10, $page = null, $options = [])
+    public function paginate($items, $perPage = 10, $page = null, $options = [])
     {
         print_r($options);
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
