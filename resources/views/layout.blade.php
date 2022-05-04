@@ -170,9 +170,9 @@ body {
     $admin=false;
 
     if(isset($_SESSION["rol"])){
-      
+
         $admin=true;
-    
+
     }
 
     ?>
@@ -292,12 +292,6 @@ body {
         <a href="/authors" class="nav-link text-success">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
           Autores
-        </a>
-      </li>
-      <li>
-        <a href="/books" class="nav-link text-success">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-          Libros
         </a>
       </li>
       <li>
