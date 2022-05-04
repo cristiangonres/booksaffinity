@@ -10,9 +10,14 @@ function filtering()
 {
     if(isset($_POST['orderBy'])){
         $orderBy=$_POST['orderBy'];
+        if(isset($_POST['ascendente'])){
+            $orden='sortByDesc';
+        } else {
+            $orden='sortBy';
+        }
 
     } else {$orderBy = 'title'; }
-    $books = Book::all()->sortByDesc($orderBy);
+    $books = Book::all()->$orden($orderBy);
     $array= array();
 
 

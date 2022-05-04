@@ -63,18 +63,23 @@ class RoutingController extends Controller
             $data = $this->paginate($array);
 
          }else{
+            if(isset($_POST['ascendente'])){
+                $orden='desc';
+            } else {
+                $orden='asc';
+            }
             $orderBy = 'title';
-            $data = Book::orderBy($orderBy, 'asc')
+            $data = Book::orderBy($orderBy, $orden)
             ->paginate(10);
          }
 
-         return view('filteredlist', compact('data', 'genres', 'countries', 'buleano'));
+         return view('filteredlist', compact('data', 'genres', 'countries'));
 
     }
 
 
 
-    public function paginate($items, $perPage = 10, $page = null, $options = [])
+    public function paginate($items, $perPage = 1000, $page = null, $options = [])
     {
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof Collection ? $items : Collection::make($items);

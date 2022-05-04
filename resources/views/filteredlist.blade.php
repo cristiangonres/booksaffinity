@@ -88,6 +88,8 @@ input[type="radio"]:checked ~ label {
                           <option value="country">País</option>
                           <option value="score">Valoración</option>
                       </select>
+                      <label class="form-label" for="orderBy"> ascendente </label>
+                      <input type="checkbox" name="ascendente" value="true">
                     <input type="submit" class="btn btn-dark" id="submit" name="filter" value="Filtrar">
 
 
