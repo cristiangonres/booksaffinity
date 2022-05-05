@@ -128,6 +128,7 @@ class AuthorController extends Controller
             $imageContent="";
             /*
             * TODO no consigo subir la imagen, dice que el array autorCover no existe.
+            */
             $check = getimagesize($_FILES["autorCover"]["tmp_name"]);
             
             if($check !== false){
@@ -142,7 +143,7 @@ class AuthorController extends Controller
                 $description="descrription aun no procesado";
                 return view('afterSubmitAuthor', compact('name', 'birthdate', 'birthDeath', 'imageContent' , 'countryID', 'country', 'description'));
             }            
-            */
+            /**/
             // Obteniendo datos del formulario, posteriormente para hacer el update.
             $name=$request->get('autorName');            
             $birthdate=$request->get('autorBirthdate');

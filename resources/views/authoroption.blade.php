@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="row">
-        <form class="p-5 ml-1 list-group-item" action="/afterEditAuthor" method="post">
+        <form class="p-5 ml-1 list-group-item" action="/afterEditAuthor" method="post" enctype="multipart/form-data">
             <h2>Editar o borrar autor</h2><br>
             @csrf
             <?php

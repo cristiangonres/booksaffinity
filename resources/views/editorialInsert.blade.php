@@ -4,10 +4,19 @@
 
 @section('content')
     <div class="row">
-        <form class="p-5 ml-1 list-group-item" action="/afterSubmitEditorial" method="post">
+        <form class="p-5 ml-1 list-group-item" action="/afterSubmitEditorial" method="post" enctype="multipart/form-data">
             <h2>Insertar</h2><br>
             @csrf            
             <!-- 2 column grid layout with text inputs for the first and last names -->
+            <div class="row col-12 mb-2">
+                <div class="col-8">
+                    <div class="form-outline">
+                        <label class="form-label" for="autorCover">Portada:</label>
+                        <input type="file" name="editorialCover" class="form-control" value= ""/>
+                    </div>
+                </div>
+            </div>
+
             <div class="row col-12 mb-2">
                 <div class="col-4">
                     <div class="form-outline">

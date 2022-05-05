@@ -7,7 +7,7 @@
 <p>
     <?php 
         var_dump($name, $fecha , $countryID, $country, $desc);
-        echo '</br>', $name, '</br>', $fecha, '</br>', $countryID, '</br>', $country, '</br>', $desc;
+        echo '</br>', $name, '</br>', $fecha, '</br>', $countryID, '</br>', $imageContent, '</br>', $country, '</br>', $desc;
     ?> 
 </p>
 
