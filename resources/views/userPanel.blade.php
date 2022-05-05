@@ -4,8 +4,9 @@
 @section('title', 'User Panel')
 
 @section('content')
-<?php 
-    var_dump($_SESSION);
+
+<?php
+    //var_dump($_SESSION);
     $id=$_SESSION["id"];
     $name=$_SESSION["username"];
     $desc=$_SESSION["description"];
@@ -21,7 +22,6 @@
     <div class="row col-12 mb-2">
         <div class="col-4">
             <div class="form-outline">
-                <label class="form-label" for="form6Example2">ID (ni debería verse ni poderse tocar, esto es muuuy peligroso, la cosa sería poderlo mandar por POST sin que se vea) </label>
                     <?php
                         echo '<input type="text" name="userID" class="form-control" value="' . $id . '" required hidden/>';
                     ?>                    
@@ -79,9 +79,11 @@
 
 <p>
     <?php 
+    /*
         var_dump($_SESSION["id"]);
         $id=$_SESSION["id"];
         echo '</br>', $id;
+        */
     ?> 
 </p>
 
