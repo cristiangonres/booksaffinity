@@ -151,6 +151,7 @@ class AuthorController extends Controller
             // Aquí estaría $country, pero está un poco más arriba para buscar su equivalente en id en la BD.
 
             $description=$request->get('autorDescription');
+            $description=$request->get('autorDescription');
             
             // Comprobamos que el país existe en caso de cambiarse.
             if($countryID==0){
