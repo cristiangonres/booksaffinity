@@ -343,14 +343,6 @@ if ($admin){
 }
 
 ?>
-
-      <li>
-        <a href="/editorial" class="nav-link text-success">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-          Detalle Editorial
-        </a>
-      </li>
-
       <li>
         <a href="/genres" class="nav-link text-success">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
