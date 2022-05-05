@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookManageController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\EditorialController;
 use App\Models\Book;
 use App\Models\Country;
 

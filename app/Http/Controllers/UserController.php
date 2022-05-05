@@ -120,6 +120,7 @@ class UserController extends Controller
     }
 
     function editORdeleteUser(Request $request){
+        session_start();
         $idUser=$request->get('userID');
         $desc=$request->get('userDesc');
         $passOld=$request->get('userOldPass');
@@ -135,6 +136,8 @@ class UserController extends Controller
             $userDB->description=$desc;
             $userDB->save();
 
+            $_SESSION["description"]=$userDB->description=$desc;
+            
             echo '<script language="javascript">';
             echo 'alert("Usuario actualizado")';
             echo '</script>';
@@ -147,10 +150,12 @@ class UserController extends Controller
             echo '<script language="javascript">';
             echo 'alert("Usuario borrado")';
             echo '</script>';
-            //$userDB->delete();
+            $userDB->delete();
             
             $info="usuario borrado";
-            //return $rchome;
+            //return $rchome;            
+            session_reset();
+            session_destroy();
             return view('afterEditUser', compact('idUser', 'info'));
 
         }elseif($_POST['button'] == 'changePass'){
