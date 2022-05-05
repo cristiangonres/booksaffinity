@@ -35,57 +35,57 @@ class AuthorController extends Controller
     }
 
     function updateORdeleteAutor(Request $request){        
-        if ($_POST["button"] == "update") {
-            // Obteniendo author de la BD al que le haremos update.
-            $id=$request->get('authorID');
-            $updateAuthor = Author::find($id);
-            
-            $country=$request->get('autorCountry');
-            
-            // Obteniendo ID del país en la BD.
-            $countryID=0;
-            $countryModel = Country::where('country_name', $country)->get();
-            foreach($countryModel as $getId){
-                $countryID=$getId->id;
-            }
+        // Obteniendo author de la BD al que le haremos update.
+        $id=$request->get('authorID');
+        $updateAuthor = Author::find($id);
+        
+        $country=$request->get('autorCountry');
+        
+        // Obteniendo ID del país en la BD.
+        $countryID=0;
+        $countryModel = Country::where('country_name', $country)->get();
+        foreach($countryModel as $getId){
+            $countryID=$getId->id;
+        }
 
-            // Obtenemos la imagen
-            $imageContent="";
-            if(isset($_FILES["autorCover"]["tmp_name"])){
-                $image=$_FILES["autorCover"]["tmp_name"];
-                $imageContent=file_get_contents($image);
-            }
+        // Obtenemos la imagen
+        $imageContent="";
+        if(isset($_FILES["autorCover"]["tmp_name"])){
+            $image=$_FILES["autorCover"]["tmp_name"];
+            $imageContent=file_get_contents($image);
+        }
 
-            // Obteniendo datos del formulario, posteriormente para hacer el update.
-            $name=$request->get('autorName');            
-            $birthdate=$request->get('autorBirthdate');
-            $birthDeath=$request->get('autorDeathdate');
-            // Aquí estaría $country, pero está un poco más arriba para buscar su equivalente en id en la BD.
+        // Obteniendo datos del formulario, posteriormente para hacer el update.
+        $name=$request->get('autorName');            
+        $birthdate=$request->get('autorBirthdate');
+        $birthDeath=$request->get('autorDeathdate');
+        // Aquí estaría $country, pero está un poco más arriba para buscar su equivalente en id en la BD.
 
-            $description=$request->get('autorDescription');
+        $description=$request->get('autorDescription');
 
-            // TODO habría que hacer un método para esto, aquí hay repetición de código.
-            // Comprobamos que el formato de la fecha del cumpleaños es correcto.
-            if (!(preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$birthdate))) {
-                $birthdate="VALORES DE BIRTHDATE INCORRECTOS";
+        // TODO habría que hacer un método para esto, aquí hay repetición de código.
+        // Comprobamos que el formato de la fecha del cumpleaños es correcto.
+        if (!(preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$birthdate))) {
+            $birthdate="VALORES DE BIRTHDATE INCORRECTOS";
+            return view('afterEditAuthor', compact('id', 'name', 'birthdate', 'birthDeath', 'imageContent' , 'countryID', 'country', 'description'));
+        } 
+
+        // Comprobamos que el formato de la fecha de muerte es correcto.
+        if($birthDeath!=""){
+            if (!(preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$birthDeath))){
+                $birthDeath="VALORES DE DEATH DATE INCORRECTOS";
                 return view('afterEditAuthor', compact('id', 'name', 'birthdate', 'birthDeath', 'imageContent' , 'countryID', 'country', 'description'));
-            } 
+            }    
+        }
+        
 
-            // Comprobamos que el formato de la fecha de muerte es correcto.
-            if($birthDeath!=""){
-                if (!(preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$birthDeath))){
-                    $birthDeath="VALORES DE DEATH DATE INCORRECTOS";
-                    return view('afterEditAuthor', compact('id', 'name', 'birthdate', 'birthDeath', 'imageContent' , 'countryID', 'country', 'description'));
-                }    
-            }
-            
+        // Comprobamos que el país existe en caso de cambiarse.
+        if($countryID==0){
+            $countryID="PAÍS NO ENCONTRADO";
+            return view('afterEditAuthor', compact('id', 'name', 'birthdate', 'birthDeath', 'imageContent' , 'countryID', 'country', 'description'));
+        }
 
-            // Comprobamos que el país existe en caso de cambiarse.
-            if($countryID==0){
-                $countryID="PAÍS NO ENCONTRADO";
-                return view('afterEditAuthor', compact('id', 'name', 'birthdate', 'birthDeath', 'imageContent' , 'countryID', 'country', 'description'));
-            }
-
+        if ($_POST["button"] == "update") {     
             // Actualizando datos de los atributos del autor.            
             $updateAuthor->author_name=$name;
             $updateAuthor->birth_date=$birthdate;
@@ -99,9 +99,9 @@ class AuthorController extends Controller
             $updateAuthor->description=$description;
 
             $updateAuthor->save();
-        } elseif ($_POST["button"] == "delete") {
-            //TODO no permite borrar filas que comprometan estructuras de otras tablas por claves foraneas, la BD tendrá las FK con ON DELETE CASCADE and ON UPDATE CASCADE?
+        } elseif ($_POST["button"] == "delete") {            
             $id=$request->get('authorID');
+
             $deleteAuthor = Author::find($id);
             $deleteAuthor->delete();
         }
@@ -151,7 +151,6 @@ class AuthorController extends Controller
             // Aquí estaría $country, pero está un poco más arriba para buscar su equivalente en id en la BD.
 
             $description=$request->get('autorDescription');
-            $description=$request->get('autorDescription');
             
             // Comprobamos que el país existe en caso de cambiarse.
             if($countryID==0){
@@ -166,6 +165,8 @@ class AuthorController extends Controller
             
             if(!$imageContent==""){
                 $updateAuthor->photo=$imageContent;
+            } else {
+                $imageContent="No se ha subido ninguna imagen";
             }
             
             $updateAuthor->country_id=$countryID;

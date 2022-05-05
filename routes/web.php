@@ -61,16 +61,18 @@ Route::post('/filteredlist', [RoutingController::class, 'filterBooks']);
 
 Route::get('/book', [RoutingController::class, 'book']);
 
-Route::get('/authormanage', function () {
-    return view('authormanage');
+Route::get('/editorials', [EditorialController::class, 'editorial']);
+
+Route::get('/editorialmanage', [EditorialController::class, 'editorialManage']);
+Route::get('/editorialmanage/{id}', [EditorialController::class, 'editorialEdit']);
+Route::get('/editorial/insertar',  function(){
+    return view('editorialInsert');
 });
+Route::post('/afterEditEditorial', [EditorialController::class, 'updateOrDeleteEditorial']);
+Route::post('/afterSubmitEditorial', [EditorialController::class, 'submitEditorial']);
 
 Route::get('/editorial', function () {
     return view('editorial');
-});
-
-Route::get('/editorialmanage', function () {
-    return view('editorialmanage');
 });
 
 Route::get('/signup', function () {
