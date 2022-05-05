@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Editorial extends Model
 {
+    public $timestamps = false;
+    
     use HasFactory;
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 }

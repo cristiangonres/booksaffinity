@@ -16,5 +16,10 @@ class Country extends Model
     {
         return $this->hasMany(Author::class, 'country_id');
     }
+
+    public function editorial()
+    {
+        return $this->hasMany(Editorial::class, 'country_id');
+    }
 }
 
