@@ -25,7 +25,7 @@ class AuthorController extends Controller
     function showAllAuthorsWithOptions(){
         Paginator::defaultView('vendor\pagination\bootstrap-4');
         $data=Author::paginate(10);
-        return view('authormanage', compact('data'));
+        return view('authormanage2', compact('data'));
     }    
 
     function showOneAuthorsWithOptions($id){
