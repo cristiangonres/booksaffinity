@@ -8,6 +8,8 @@ use Laravel\Scout\Searchable;
 
 class Author extends Model
 {
+    public $timestamps = false;
+    
     public function books()
     {
         return $this->belongsToMany(Book::class)->withPivot('author_id');

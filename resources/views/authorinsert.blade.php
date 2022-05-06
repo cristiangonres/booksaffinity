@@ -4,14 +4,14 @@
 
 @section('content')
     <div class="row">
-        <form class="p-5 ml-1 list-group-item" action="/afterSubmitAuthor" method="post">
+        <form class="p-5 ml-1 list-group-item" action="/afterSubmitAuthor" method="post" enctype="multipart/form-data">
             <h2>Insertar autor.</h2><br>
             @csrf
             <!-- 2 column grid layout with text inputs for the first and last names -->
             <div class="row col-12 mb-2">
                 <div class="col-8">
                     <div class="form-outline">
-                        <label class="form-label" for="cover">Portada:</label>
+                        <label class="form-label" for="autorCover">Portada:</label>
                         <input type="file" name="autorCover" class="form-control" value= ""/>
                     </div>
                 </div>

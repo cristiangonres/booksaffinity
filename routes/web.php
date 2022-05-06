@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookManageController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\EditorialController;
 use App\Models\Book;
 use App\Models\Country;
 
@@ -42,8 +43,16 @@ Route::get('/countries', [CountryController::class, 'countries']);
 Route::get('/countrybook/{id}', [CountryController::class, 'booksByCountry']);
 Route::get('/countryauthor/{id}', [CountryController::class, 'authorsByCountry']);
 
+
 Route::get('/authors', [AuthorController::class, 'showAllAuthors']);
 Route::get('/author/{id}', [AuthorController::class, 'showOneAuthor']);
+Route::get('/authormanage',  [AuthorController::class, 'showAllAuthorsWithOptions']);
+Route::get('/authormanage/insertar',  function(){
+    return view('authorinsert');
+});
+Route::get('/authormanage/{id}',  [AuthorController::class, 'showOneAuthorsWithOptions']);
+Route::post('/afterEditAuthor', [AuthorController::class, 'updateORdeleteAutor']);
+Route::post('/afterSubmitAuthor', [AuthorController::class, 'submitAuthor']);
 
 Route::get('/bookmanage', [BookManageController::class, 'emptyRet']);
 Route::post('/bookmanage', [BookManageController::class, 'insert']);
@@ -55,16 +64,18 @@ Route::post('/filteredlist', [RoutingController::class, 'filterBooks']);
 
 Route::get('/book', [RoutingController::class, 'book']);
 
-Route::get('/authormanage', function () {
-    return view('authormanage');
+Route::get('/editorials', [EditorialController::class, 'editorial']);
+
+Route::get('/editorialmanage', [EditorialController::class, 'editorialManage']);
+Route::get('/editorialmanage/{id}', [EditorialController::class, 'editorialEdit']);
+Route::get('/editorial/insertar',  function(){
+    return view('editorialInsert');
 });
+Route::post('/afterEditEditorial', [EditorialController::class, 'updateOrDeleteEditorial']);
+Route::post('/afterSubmitEditorial', [EditorialController::class, 'submitEditorial']);
 
 Route::get('/editorial', function () {
     return view('editorial');
-});
-
-Route::get('/editorialmanage', function () {
-    return view('editorialmanage');
 });
 
 Route::get('/signup', function () {
@@ -75,6 +86,7 @@ Route::get('/signin', function () {
     return view('signin');
 });
 
+Route::post('/afterEditUser', [UserController::class, 'editORdeleteUser']);
 
 /*Route::get('/moderatexx', function () {
     return view('moderatexx');

@@ -218,7 +218,7 @@ input[type="radio"]:checked ~ label {
                 @endforeach
             @else
                 <tr>
-                    <td colspan="10">There are no data.</td>
+                    <td colspan="10">No se han encontrado datos que coincidan con el filtro aplicado.</td>
                 </tr>
             @endif
 
