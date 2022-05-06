@@ -74,8 +74,7 @@ class UserController extends Controller
             $userName=$request->get('userName');
             $userDB=Account::where('username', $userName)->get();
 
-            
-            if(isset($userDB[0]["username"])){
+            if($userDB[0]["username"] == $userName){
                 $userPass=$request->get('userPass');
 
                 if($userDB[0]["user_password"] == $userPass){
@@ -87,7 +86,6 @@ class UserController extends Controller
                     echo '<script language="javascript">';
                     echo 'alert("Logeado con exito '.$_SESSION["user_id"].$_SESSION["username"].$_SESSION["rol"].'")';
                     echo '</script>';
-
 
                     return $rchome;
 
@@ -114,6 +112,78 @@ class UserController extends Controller
             echo 'alert("Session cerrada")';
             echo '</script>';
             return $rchome;
+        }
+
+        if(isset($_POST["sessionProfile"])){
+            $id=$_SESSION["id"]; // Esto no va yo flipo.
+            return view('userPanel')->with($_SESSION);
+        }
+    }
+
+    function editORdeleteUser(Request $request){
+        session_start();
+        $idUser=$request->get('userID');
+        $desc=$request->get('userDesc');
+        $passOld=$request->get('userOldPass');
+        $passNew=$request->get('userNewPass');
+
+        $userDB=Account::find($idUser);
+        $userDBPass=$userDB->user_password;
+
+        $rc = new RoutingController();
+        $rchome = $rc->home();
+
+        if($_POST['button'] == "update"){
+            $userDB->description=$desc;
+            $userDB->save();
+
+            $_SESSION["description"]=$userDB->description=$desc;
+
+            echo '<script language="javascript">';
+            echo 'alert("Usuario actualizado")';
+            echo '</script>';
+
+            $info="usuario actualizado";
+            //return $rchome;
+            return view('afterEditUser', compact('idUser', 'info'));
+
+        }elseif($_POST['button'] == "delete"){
+            echo '<script language="javascript">';
+            echo 'alert("Usuario borrado")';
+            echo '</script>';
+            $userDB->delete();
+
+            $info="usuario borrado";
+            //return $rchome;
+            session_reset();
+            session_destroy();
+            return view('afterEditUser', compact('idUser', 'info'));
+
+        }elseif($_POST['button'] == 'changePass'){
+            if($userDBPass == $passOld){
+                //validacion de nueva Password.
+                $uppercase=preg_match('@[A-Z]@', $passNew);
+                $lowercase=preg_match('@[a-z]@', $passNew);
+                $number=preg_match('@[0-9]@', $passNew);
+                $leng= strlen($passNew)>=6;
+
+                if($uppercase && $lowercase && $number && $leng){
+                    $userDB->user_password=$passNew;
+                    $userDB->save();
+
+                    $info="Contraseña cambiada satisfactoriamente";
+                    echo '<script language="javascript">';
+                    echo 'alert("Contraseña cambiada satisfactoriamente")';
+                    echo '</script>';
+
+                    return view('afterEditUser', compact('idUser', 'info'));
+                    //return $rchome;
+                }
+
+            }
+
+            $info="No has introducido correctamente la contraseña anterior";
+            return view('afterEditUser', compact('idUser', 'info'));
         }
     }
 }

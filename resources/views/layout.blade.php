@@ -243,8 +243,9 @@ body {
     <?php
     if($admin){
       if(isset($_SESSION["username"])){
-        echo'<button type="submit" style="width: 80%;" name="sessionclose" class=" align-items-center btn btn-primary">Cerrar sessión</button>';
-      }
+        echo '<button type="submit" style="width: 80%;" name="sessionclose" class=" align-items-center btn btn-primary">Cerrar sessión</button>';
+        echo '<button type="submit" style="width: 80%;" name="sessionProfile" class=" align-items-center btn btn-info">Ver perfil</button>';
+        }
 
     }else{
       echo' <div class="input-group">
@@ -300,6 +301,12 @@ body {
           Paises
         </a>
       </li>
+      <li>
+        <a href="/editorials" class="nav-link text-success">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+          Editorial
+        </a>
+      </li>
 
 
 <?php
@@ -334,14 +341,6 @@ if ($admin){
 }
 
 ?>
-
-      <li>
-        <a href="/editorial" class="nav-link text-success">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-          Detalle Editorial
-        </a>
-      </li>
-
       <li>
         <a href="/genres" class="nav-link text-success">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
