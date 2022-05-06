@@ -131,7 +131,7 @@ input[type="radio"]:checked ~ label {
 
                 echo '</li>
 
-                <li>Año: <a href="#" style="text-decoration:none" class="link-dark">' .
+                <li>Año: <a href="/booksbyyear/'.$year.'" style="text-decoration:none" class="link-dark">' .
                     $year .
                     '</a></li>
                 <li>Pais: <a href="/countrybook/' . $book->country['id'] . '" style="text-decoration:none" class="link-dark">' . $book->country['country_name'] . '</a></li>
