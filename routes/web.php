@@ -37,6 +37,7 @@ Route::post('/afterSignup', [UserController::class, 'signUp']);
 Route::post('/home', [UserController::class, 'signIn']);
 
 Route::get('/userPanel', [UserController::class, 'profile']);
+Route::get('/userPanel/{title}', [UserController::class, 'editComment']);
 
 Route::get('/genres', [GenreController::class, 'showAllGenres']);
 Route::get('/genre/{id}', [GenreController::class, 'showOneGenre']);

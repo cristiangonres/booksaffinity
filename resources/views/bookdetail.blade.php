@@ -341,16 +341,25 @@ echo '<div class="m-4 p-2 shadow rounded border-bottom container border-top d-fl
             </div>
 
         </div>
-        <div class="col-1 align-self-center">
+        <div class="col-2 align-self-center">
         <span class="badge bg-primary "> Puntuación: '.$userData[$i]["rate"].' </span>
         </div>
-        <div class="col-2"></div>
+        ';
+
+        echo '
         <div class="col-3 align-self-end">
         <strong>Fecha publicación: </strong> <span class="amount-old">'.$userData[$i]["date_review"].'</span>
-        </div>
+        </div>';
+
+        if($_SESSION["user_id"] == $userData[$i]["user_id"] ){
+            echo '<div class="col-1 align-self-center">
+            <button type="button" class="btn btn-default btn-sm" onclick="add_coment()">
+            <span class="glyphicon glyphicon-edit"></span> Editar
+            </button></div>';
+        }
 
 
-        </div>
+        echo '</div>
 
 
         <div id="'.$userData[$i]["username"].'" class="col-12">

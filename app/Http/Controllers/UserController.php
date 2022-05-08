@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Account;
 use App\Http\Controllers\RoutingController;
+use App\Models\AccountBook;
+use App\Models\Book;
 
 class UserController extends Controller
 {
@@ -137,12 +139,44 @@ class UserController extends Controller
         }
     }
 
+    function editComment($title){
+
+    }
+
     function profile(){
         session_start();
+        $userComments = AccountBook::where('account_id', $_SESSION["user_id"])->get();
+        $userData = array();
+        $i=0;
+        foreach($userComments as $comment){
+            $book = Book::where('id', $comment["book_id"])->get();
+            $userData[$i]["rate"] = $comment["rate"];
+            $userData[$i]["date_review"] =$comment["date_review"];
+            $userData[$i]["title_review"] = $comment["title_review"];
+            $userData[$i]["review"] = $comment["review"];
+            $userData[$i]["score"] = $book[0]["score"];
+            $userData[$i]["book_title"] = $book[0]["title"];
+
+            $nrate = count($book[0]["accounts"]);
+            $ncoments=0;
+            for ($j = 0; $j < $nrate; $j++) {
+    
+                if($book["0"]["accounts"][$j]['pivot']['date_review'] != ""){
+                    $ncoments += 1;
+                }
+            }
+
+            $userData[$i]["comments"]=$ncoments;
+            
+
+
+            $i++;
+        }
+
         $userDB=Account::where('id', $_SESSION["user_id"])->get();
         
 
-        return view('userPanel', compact('userDB'));
+        return view('userPanel', compact('userDB', 'userData'));
     }
 
     function editORdeleteUser(Request $request){

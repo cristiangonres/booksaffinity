@@ -48,10 +48,19 @@ input[type="radio"]:checked ~ label {
     }
 
     $admin=false;
+    $user=false;
+    $master=false;
 
-    if(isset($_SESSION["role"])){
-      if($_SESSION["role"]=="admin"){
-              $admin=true;
+    if(isset($_SESSION["rol"])){
+      if($_SESSION["rol"] == "admin" ){
+        $admin=true;
+        $user=true;
+      }elseif($_SESSION["rol"] == "user"){
+        $user=true;
+      }elseif($_SESSION["rol"] == "master"){
+        $master=true;
+        $admin=true;
+        $user=true;
       }
     }
 

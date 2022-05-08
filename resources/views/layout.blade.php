@@ -118,7 +118,6 @@
     if($user){
       if(isset($_SESSION["username"])){
         echo '<button type="submit" style="width: 80%;" name="sessionclose" class=" align-items-center btn btn-primary m-1">Cerrar sessión</button>';
-        echo '<button type="submit" style="width: 80%;" name="sessionProfile" class=" align-items-center btn btn-primary m-1">Ver perfil</button>';
         }
 
     }else{

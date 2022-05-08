@@ -5,7 +5,7 @@
 @section('content')
 
 
-<form class="p-5 ml-1 list-group-item" action="/bookmanage" method="post" enctype="multipart/form-data">
+<form class="p-5 ml-1 " action="/bookmanage" method="post" enctype="multipart/form-data">
 @csrf
 <?php
 if(!isset($book)){
