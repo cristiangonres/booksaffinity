@@ -113,7 +113,7 @@ class BookController extends Controller
 
 
         $bc = new BookController();
-        $bcDetail = $bc->bookdetail($idBook);
+        $bcDetail = $this->bookdetail($idBook);
 
         return $bcDetail;
     }

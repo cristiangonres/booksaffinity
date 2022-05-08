@@ -139,7 +139,7 @@
 <div id="comentForm" class="d-none">
 
   <div class="m-4 p-2 shadow rounded border-bottom container border-top d-flex col-md-12 flex-shrink-0">
-        <form class="p-5 ml-1 list-group-item" action="/book/{{$book['0']['id']}}" method="post">
+        <form id="original" class="p-5 ml-1 list-group-item" action="/book/{{$book['0']['id']}}" method="post">
             @csrf
 
 
@@ -229,10 +229,13 @@ if(!comented){
     form.setAttribute("method","post");
     form.setAttribute("action","/book/{{$book['0']['id']}}");
 
+    oForm = document.getElementById("original");
+    iValue= oForm.firstElementChild.getAttribute("value");
+
     inpH = document.createElement("input");
     inpH.setAttribute("type", "hidden");
     inpH.setAttribute("name", "_token");
-    inpH.setAttribute("value", "oaqil69GrC86pZYzGQdSj1fSqjl3OlRvIglTn0Dt");
+    inpH.setAttribute("value", iValue);
 
     lab = document.createElement('label');
     lab.setAttribute("class", "form-label");
