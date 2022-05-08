@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="css/app.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -22,144 +23,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style>
-body {
-	font-family: 'Open Sans', sans-serif;
-}
-.form-control {
-	box-shadow: none;
-	border-radius: 4px;
-	border-color: #dfe3e8;
-}
-.navbar {
-	background: #fff;
-	padding-left: 16px;
-	padding-right: 16px;
-	border-bottom: 1px solid #dfe3e8;
-	border-radius: 0;
-}
-.navbar .navbar-brand {
-	font-size: 20px;
-	padding-left: 0;
-	padding-right: 50px;
-}
-.navbar .navbar-brand b {
-	color: #29c68c;
-}
-.navbar a, .navbar a:active {
-	color: #999;
-	background: transparent;
-}
-.navbar .navbar-nav a:hover, .navbar .navbar-nav a:focus {
-	color: #29c68c !important;
-}
-.navbar .navbar-nav > a.active, .navbar .navbar-nav.show > a {
-	color: #26bb84 !important;
-	background: transparent !important;
-}
-.navbar .form-inline .input-group-text {
-	box-shadow: none;
-	border-radius: 2px 0 0 2px;
-	background: #f5f5f5;
-	border-color: #dfe3e8;
-	font-size: 16px;
-}
-.navbar .form-inline i {
-	font-size: 16px;
-}
-.navbar .form-inline .btn {
-	border-radius: 2px;
-	color: #fff;
-	border-color: #29c68c;
-	background: #29c68c;
-	outline: none;
-}
-.navbar .form-inline .btn:hover, .navbar .form-inline .btn:focus {
-	border-color: #26bb84;
-	background: #26bb84;
-}
-.navbar .search-form {
-	display: inline-block;
-}
-.navbar .search-form .btn {
-	margin-left: 4px;
-}
-.navbar .search-form .form-control {
-	border-radius: 2px;
-}
-.navbar .login-form .input-group {
-	margin-right: 4px;
-	float: left;
-}
-.navbar .login-form .form-control {
-	max-width: 158px;
-	border-radius: 0 2px 2px 0;
-}
-.navbar .navbar-right .dropdown-toggle::after {
-	display: none;
-}
-.navbar .dropdown-menu {
-	font-size: 14px;
-	border-radius: 1px;
-	border-color: #e5e5e5;
-	box-shadow: 0 2px 8px rgba(0,0,0,.05);
-}
-.navbar .dropdown-menu a {
-	padding: 6px 20px;
-}
-.navbar .login-dropdown .dropdown-menu {
-	width: 505px;
-	padding: 20px;
-	left: auto;
-	right: 0;
-}
-.navbar .login-dropdown .dropdown-toggle::after {
-	display: none;
-}
 
-/*Estilos de la vista categorias */
-.list-group-item{
-  background-color: #FFFFFF!important;
-}
-.list-group-item a{
-  text-decoration:none;
-  color: #122E16;
-}
-
-.list-group-item:hover{
-  text-decoration:none;
-  color:green;
-}
-
-.list-group-item a:hover{
-  text-decoration:none;
-  color: green;
-}
-
-@media (min-width: 1200px){
-	.search-form .input-group {
-		width: 300px;
-		margin-left: 30px;
-	}
-}
-@media (max-width: 768px){
-	.navbar .dropdown-menu {
-		width: 100%;
-		background: transparent;
-		padding: 10px 20px;
-	}
-	.navbar .input-group {
-		width: 100%;
-		margin-bottom: 15px;
-	}
-	.navbar .input-group .form-control {
-		max-width: none;
-	}
-	.navbar .login-form .btn {
-		width: 100%;
-	}
-}
-</style>
 </head>
     </head>
     <?php
@@ -168,10 +32,22 @@ body {
     }
 
     $admin=false;
+    $user=false;
+    $master=false;
 
     if(isset($_SESSION["rol"])){
-
+      if($_SESSION["rol"] == "admin" ){
         $admin=true;
+        $user=true;
+      }elseif($_SESSION["rol"] == "user"){
+        $user=true;
+      }elseif($_SESSION["rol"] == "master"){
+        $master=true;
+        $admin=true;
+        $user=true;
+      }
+
+        
 
     }
 
@@ -190,7 +66,7 @@ body {
 </nav>
     </header>
 
-    <nav class="navbar border-0 navbar-expand-lg navbar-light bg-dark">
+    <nav class="navbar border-0 mb-0 navbar-expand-lg navbar-light bg-dark rounded-0">
 	<a href="#" class="navbar-brand text-white">Books<b>Affinity</b></a>
 	<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
 		<span class="navbar-toggler-icon"></span>
@@ -214,6 +90,7 @@ body {
       <a href="#" class="nav-item nav-link text-success">Novedades</a>
 			<a href="#" class="nav-item nav-link text-success">Contacto</a>
         </div>
+        <div>
 		<form class="navbar-form form-inline search-form" method="GET" action="/home">
 			<div class="input-group">
 				<input type="text" class="form-control" name="search" placeholder="Search...">
@@ -221,13 +98,15 @@ body {
 					<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 				</span>
 			</div>
+      </div>
 		</form>
+    </div>
 
-    <div class="navbar-nav ml-auto">
+    <div class="navbar-nav">
 			<div class="nav-item dropdown login-dropdown ">
 				<a href="#" data-toggle="dropdown" class="nav-item nav-link text-success dropdown-toggle" aria-expanded="false"><i class="fa fa-user-o"></i>
         <?php
-            if($admin){
+            if($user){
               if(isset($_SESSION["username"])){
                 echo $_SESSION["username"];
               }
@@ -241,10 +120,10 @@ body {
             @csrf
 
     <?php
-    if($admin){
+    if($user){
       if(isset($_SESSION["username"])){
-        echo '<button type="submit" style="width: 80%;" name="sessionclose" class=" align-items-center btn btn-primary">Cerrar sessión</button>';
-        echo '<button type="submit" style="width: 80%;" name="sessionProfile" class=" align-items-center btn btn-info">Ver perfil</button>';
+        echo '<button type="submit" style="width: 80%;" name="sessionclose" class=" align-items-center btn btn-primary m-1">Cerrar sessión</button>';
+        echo '<button type="submit" style="width: 80%;" name="sessionProfile" class=" align-items-center btn btn-primary m-1">Ver perfil</button>';
         }
 
     }else{
@@ -271,7 +150,8 @@ body {
             </form>
           </div>
          </div>
-        </div>
+         </div>
+
 	</div>
 </nav>
 
@@ -340,6 +220,18 @@ if ($admin){
           ;
 }
 
+if($user){
+ echo '<li>
+  <a href="/userPanel" class="nav-link text-success">
+    <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+    Mi Perfil
+  </a>
+</li>'
+;
+
+
+}
+
 ?>
       <li>
         <a href="/genres" class="nav-link text-success">
@@ -354,12 +246,18 @@ if ($admin){
         </a>
       </li>
 
-      <li>
+      <?php
+
+if (!$user){
+      echo '<li>
         <a href="/signup" class="nav-link text-success">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
           Registro
         </a>
-      </li>
+      </li>';
+    }
+
+    ?>
     </ul>
     <hr>
 

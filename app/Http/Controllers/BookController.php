@@ -65,6 +65,7 @@ class BookController extends Controller
 
                 }
             }
+            $userData[$i]["user_id"] = $book["0"]["accounts"][$i]['pivot']['account_id'];
             $userData[$i]["rate"] = $book["0"]["accounts"][$i]['pivot']['rate'];
             $userData[$i]["date_review"] =$book["0"]["accounts"][$i]['pivot']['date_review'];
             $userData[$i]["title_review"] = $book["0"]["accounts"][$i]['pivot']['title_review'];
@@ -88,13 +89,11 @@ class BookController extends Controller
         ->where('book_id', $idBook)
         ->first();
 
-
-
-
         if($findComment!=''){
 
             $findComment->account_id = $_SESSION["user_id"];
             $findComment->book_id = $idBook;
+            $findComment->rate = $request->get("rate");
             $findComment->title_review= $request->get("title");
             $findComment->review = $request->get("comment");
             $findComment->date_review = date('Y-m-d');
@@ -105,6 +104,7 @@ class BookController extends Controller
         $newComment=new AccountBook();
         $newComment->account_id = $_SESSION["user_id"];
         $newComment->book_id = $idBook;
+        $newComment->rate = $request->get("rate");
         $newComment->title_review= $request->get("title");
         $newComment->review = $request->get("comment");
         $newComment->date_review = date('Y-m-d');
@@ -115,7 +115,7 @@ class BookController extends Controller
         $bc = new BookController();
         $bcDetail = $bc->bookdetail($idBook);
 
-    return $bcDetail;
+        return $bcDetail;
     }
 
 }

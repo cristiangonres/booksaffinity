@@ -22,6 +22,9 @@
             <div class="m-bot15"> <strong>Autor : </strong> <span class="amount-old">
 
                 <?php
+                    if(session_status()==1){
+                        session_start();
+                      }
         $year = date('Y', strtotime($book["0"]["publi_date"]));
         $nauth = count($book["0"]["authors"]);
         for ($i = 0; $i < $nauth; $i++) {
@@ -111,9 +114,18 @@
 
             <div class="col-12">
                 <h4> Introduce un nuevo comentario: </h4>
+                <div class="row m-1 p-1 col-12">
                 <div class="m-1 p-1 col-5">
                     <label class="form-label" for="title">Titulo: </label>
                     <input type="text" name="title" class="form-control" value='' required />
+            </div>
+            <div class="m-1 p-1 col-2">
+            </div>
+            <div class="m-1 p-1 col-2">
+                    <label class="form-label" for="rate">Valoración: </label>
+                    <input type="number" class="form-control" name="rate" min="0" max="10"/>
+                    </div>
+
                 </div>
                 <br/>
                 <label class="form-label" for="comment">Comentario:</label>
@@ -129,10 +141,137 @@
 
 <script>
 function add_coment() {
+let comented = false;
+let username = "";
+let rate=0;
+let title="";
+let comment="";
 
-let form = document.getElementById("comentForm");
-form.removeAttribute("class");
+    <?php
+        $nrate = count($book["0"]["accounts"]);
+        $n=0;
+        for ($i = 0; $i < $nrate; $i++) {
+
+            if($book["0"]["accounts"][$i]['pivot']['date_review'] != ""){
+                $n += 1;
+
+            }
+        }
+        for ($i = 0; $i < $n; $i++) {
+            if($userData[$i]["user_id"]==$_SESSION['user_id']){
+            echo "comented= true;";
+            echo "username = '".$userData[$i]["username"]."';";
+            echo "rate = '".$userData[$i]["rate"]."';";
+            echo "title = '".$userData[$i]["title_review"]."';";
+            echo "comment = '".$userData[$i]["review"]."';";
+            }
+        }
+
+    ?>
+
+
+if(!comented){
+    let form = document.getElementById("comentForm");
+    form.removeAttribute("class");
+    form.scrollIntoView();
+}else{
+
+    let div= document.getElementById(username);
+    while (div.firstChild) {
+        div.removeChild(div.firstChild);
+    }
+
+    div1 = document.createElement('div');
+    div1.setAttribute("class", "form-outline m-1 row");
+
+    inDiv1 = document.createElement('div');
+    inDiv1.setAttribute("class", "m-1 p-1 col-5");
+
+    inDiv2 = document.createElement('div');
+    inDiv2.setAttribute("class", "m-1 p-1 col-2");
+
+    form = document.createElement('form');
+    form.setAttribute("class","p-4 ml-1 border-0 list-group-item");
+    form.setAttribute("method","post");
+    form.setAttribute("action","/book/{{$book['0']['id']}}");
+
+    inpH = document.createElement("input");
+    inpH.setAttribute("type", "hidden");
+    inpH.setAttribute("name", "_token");
+    inpH.setAttribute("value", "oaqil69GrC86pZYzGQdSj1fSqjl3OlRvIglTn0Dt");
+
+    lab = document.createElement('label');
+    lab.setAttribute("class", "form-label");
+    lab.setAttribute("for", "title");
+    lab.innerHTML="Titulo: ";
+
+    inp = document.createElement('input');
+    inp.setAttribute("type", "text");
+    inp.setAttribute("name", "title");
+    inp.setAttribute("class", "form-control");
+    inp.setAttribute("value", title);
+
+    div2 = document.createElement('div');
+    div2.setAttribute("class", "form-outline");
+
+    lab2 = document.createElement('label');
+    lab2.setAttribute("class", "form-label");
+    lab2.setAttribute("for", "comment");
+    lab2.innerHTML="Comentario: ";
+
+    inp2 = document.createElement('textarea');
+    inp2.setAttribute("rows", "5");
+    inp2.setAttribute("cols", "100");
+    inp2.setAttribute("name", "comment");
+    inp2.setAttribute("class", "form-control");
+    inp2.innerHTML= comment;
+
+    lab3 = document.createElement('label');
+    lab3.setAttribute("class", "form-label");
+    lab3.setAttribute("for", "rate");
+    lab3.innerHTML="Valoración:";
+
+    inp3 = document.createElement('input');
+    inp3.setAttribute("type", "number");
+    inp3.setAttribute("min", "0");
+    inp3.setAttribute("max", "10");
+    inp3.setAttribute("name", "rate");
+    inp3.setAttribute("class", "form-control");
+    inp3.setAttribute("value", rate);
+
+    but = document.createElement('button');
+    but.setAttribute("type", "sumbit");
+    but.setAttribute("name", "save");
+    but.setAttribute("class", "btn btn-success btn-block mb-4 col-3");
+    but.innerHTML="Guardar comentario";
+
+
+    inDiv1.appendChild(lab);
+    inDiv1.appendChild(inp);
+
+    inDiv2.appendChild(lab3);
+    inDiv2.appendChild(inp3);
+
+    div1.appendChild(inDiv1);
+    div1.appendChild(inDiv2);
+
+    div2.appendChild(lab2);
+    div2.appendChild(inp2);
+
+    form.appendChild(inpH);
+    form.appendChild(div1);
+    form.appendChild(div2);
+    form.appendChild(but);
+
+    div.appendChild(form).scrollIntoView();
+
 }
+
+
+
+}
+
+
 </script>
 
 
@@ -177,7 +316,8 @@ echo '<div class="m-4 p-2 shadow rounded border-bottom container border-top d-fl
         </div>
 
 
-        <div class="col-12">
+        <div id="'.$userData[$i]["username"].'" class="col-12">
+        
         <div class="m-1 p-1"> <strong> '.$userData[$i]["title_review"].' </strong> </div><br/>
             <p>
             '.$userData[$i]["review"].'

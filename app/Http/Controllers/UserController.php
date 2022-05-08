@@ -115,9 +115,18 @@ class UserController extends Controller
         }
 
         if(isset($_POST["sessionProfile"])){
-            $id=$_SESSION["id"]; // Esto no va yo flipo.
-            return view('userPanel')->with($_SESSION);
+            $userDB=Account::where('id', $_SESSION["user_id"])->get();
+
+            return view('userPanel', compact('userDB'));
         }
+    }
+
+    function profile(){
+        session_start();
+        $userDB=Account::where('id', $_SESSION["user_id"])->get();
+        
+
+        return view('userPanel', compact('userDB'));
     }
 
     function editORdeleteUser(Request $request){
