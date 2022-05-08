@@ -80,9 +80,7 @@ Route::get('/editorial', function () {
     return view('editorial');
 });
 
-Route::get('/signup', function () {
-    return view('signup2');
-});
+Route::get('/signup', [UserController::class, 'signUpView']);
 
 Route::get('/signin', function () {
     return view('signin');
@@ -111,7 +109,6 @@ Route::get('/filteredlist', [RoutingController::class, 'filteredlist']);
 
 Route::get('/moderatexx', [RoutingController::class, 'moderatexx']);
 
-Route::get('/signup', [RoutingController::class, 'signup']);
 
 
 */

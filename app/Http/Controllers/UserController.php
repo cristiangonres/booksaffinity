@@ -8,10 +8,17 @@ use App\Http\Controllers\RoutingController;
 
 class UserController extends Controller
 {
+    function signUpView(){
+        return view('signup');
+    }
+
     function signUp(Request $request){
 
         $userName=$request->get('userName');
         $userNameDB=Account::where('username', $userName)->get('username');
+
+        $rc = new RoutingController();
+        $rchome = $rc->home();
 
         //Validacion de usuario.
         if($userNameDB=='[]'){
@@ -45,19 +52,31 @@ class UserController extends Controller
                             $newAccount->created_on=date('Y-m-d h:i:s');
                             $newAccount->description=$request->get('description');
                             $newAccount->save();
-                            return view('afterSignup')->with('userName', 'Nuevo usuario registrado');
+                            $message = '<script language="javascript">alert("Usuario registrado correctamente!")</script>';
+                            $_SESSION["logued"]=$message;
+                            return $rchome;
 
                     } else {
-                        return view('afterSignup')->with('userName', 'Password no valido, debe contener minimo 6 digitos, Mayúsculas, minúsculas y numeros.');
+                        $message = '<script language="javascript">alert("Password no valido, debe contener minimo 6 digitos, Mayúsculas, minúsculas y numeros.")</script>';
+                        $_SESSION["logued"]=$message;
+                        return view('signup');
                     }
                 }else{
-                    return view('afterSignup')->with('userName', 'E-mail ya registrado');
+                    
+                    $message = '<script language="javascript">alert("Ya existe un usuario con este e-mail.")</script>';
+                    $_SESSION["logued"]=$message;
+                    return view('signup');
                 }
             }else{
-                return view('afterSignup')->with('userName', 'E-mail no valido');
+            
+                $message = '<script language="javascript">alert("E-mail no valido.")</script>';
+                $_SESSION["logued"]=$message;
+                return view('signup');
             }
         } else {
-            return view('afterSignup')->with('userName', 'El nombre de usuario ya existe');
+            $message = '<script language="javascript">alert("El nombre de usuario ya existe.")</script>';
+            $_SESSION["logued"]=$message;
+            return view('signup');
         }
 
 
@@ -74,7 +93,7 @@ class UserController extends Controller
             $userName=$request->get('userName');
             $userDB=Account::where('username', $userName)->get();
 
-            if($userDB[0]["username"] == $userName){
+            if(isset($userDB[0]["username"])){
                 $userPass=$request->get('userPass');
 
                 if($userDB[0]["user_password"] == $userPass){
@@ -82,24 +101,21 @@ class UserController extends Controller
                     $_SESSION["rol"]=$userDB[0]["rol"];
                     $_SESSION["username"]=$userDB[0]["username"];
                     $_SESSION["user_id"]=$userDB[0]["id"];
-
-                    echo '<script language="javascript">';
-                    echo 'alert("Logeado con exito '.$_SESSION["user_id"].$_SESSION["username"].$_SESSION["rol"].'")';
-                    echo '</script>';
-
+                    $message = '<script language="javascript">alert("Logeado correctamente!")</script>';
+                    $_SESSION["logued"]=$message;
                     return $rchome;
 
                 } else {
-                    echo '<script language="javascript">';
-                    echo 'alert("Password incorrecto")';
-                    echo '</script>';
+                    $message = '<script language="javascript">alert("Password incorrecto")</script>';
+                    $_SESSION["logued"]=$message;
+                    
                     return $rchome;
                 }
 
             } else {
-                echo '<script language="javascript">';
-                echo 'alert("Usuario incorrecto")';
-                echo '</script>';
+                $message = '<script language="javascript">alert("Usuario incorrecto")</script>';
+                $_SESSION["logued"]=$message;
+
                 return $rchome;
             }
         }
@@ -108,9 +124,9 @@ class UserController extends Controller
 
             session_reset();
             session_destroy();
-            echo '<script language="javascript">';
-            echo 'alert("Session cerrada")';
-            echo '</script>';
+            session_start();
+            $message = '<script language="javascript">alert("Session cerrada")</script>';
+            $_SESSION["logued"]=$message;
             return $rchome;
         }
 
@@ -148,25 +164,24 @@ class UserController extends Controller
 
             $_SESSION["description"]=$userDB->description=$desc;
 
-            echo '<script language="javascript">';
-            echo 'alert("Usuario actualizado")';
-            echo '</script>';
+            $message = '<script language="javascript">alert("Usuario actualizado")</script>';
+            $_SESSION["logued"]=$message;
 
-            $info="usuario actualizado";
-            //return $rchome;
-            return view('afterEditUser', compact('idUser', 'info'));
+            $userDB=Account::where('id', $_SESSION["user_id"])->get();
+
+            return view('userPanel', compact('userDB'));
 
         }elseif($_POST['button'] == "delete"){
-            echo '<script language="javascript">';
-            echo 'alert("Usuario borrado")';
-            echo '</script>';
+
             $userDB->delete();
 
-            $info="usuario borrado";
-            //return $rchome;
+
             session_reset();
             session_destroy();
-            return view('afterEditUser', compact('idUser', 'info'));
+            session_start();
+            $message = '<script language="javascript">alert("Usuario eliminado")</script>';
+            $_SESSION["logued"]=$message;
+            return $rchome;
 
         }elseif($_POST['button'] == 'changePass'){
             if($userDBPass == $passOld){
@@ -180,19 +195,23 @@ class UserController extends Controller
                     $userDB->user_password=$passNew;
                     $userDB->save();
 
-                    $info="Contraseña cambiada satisfactoriamente";
-                    echo '<script language="javascript">';
-                    echo 'alert("Contraseña cambiada satisfactoriamente")';
-                    echo '</script>';
+                    $message = '<script language="javascript">alert("Contraseña cambiada satisfactoriamente")</script>';
+                    $_SESSION["logued"]=$message;
 
-                    return view('afterEditUser', compact('idUser', 'info'));
-                    //return $rchome;
+                    $userDB=Account::where('id', $_SESSION["user_id"])->get();
+
+                    return view('userPanel', compact('userDB'));
                 }
 
             }
 
-            $info="No has introducido correctamente la contraseña anterior";
-            return view('afterEditUser', compact('idUser', 'info'));
+            
+            $message = '<script language="javascript">alert("Las contraseñas no coinciden")</script>';
+            $_SESSION["logued"]=$message;
+
+            $userDB=Account::where('id', $_SESSION["user_id"])->get();
+
+            return view('userPanel', compact('userDB'));
         }
     }
 }

@@ -4,52 +4,64 @@
 
 @section('content')
 
-<form style='color: #f0d3f5; background-color: #6269a7' class="p-5 ml-1" action="/signup" method="post">
-<h1>Alta usuario</h1><br>
+<!--<h2>CREAR NUEVO USUARIO</h2>
+
+<form class="form_Login" action="/afterSignup" method="POST">
+    @csrf
+    <label class="form-label" for="userName">Nombre de usuario: </label> 
+    <input type="text" required name="userName"/>
+    <label class="form-label" for="emailUser">E-mail: </label> 
+    <input type="email" required name="emailUser"/>
+    <label class="form-label" for="userPass">Contraseña: </label> 
+    <input type="password" required name="userPass"/>
+    <label class="form-label" for="description">Descripción: </label> 
+    <textarea type="text" required name="description"></textarea>
+    <input type="submit" value="signUp"/>
+</form>-->
+
+<form class="p-5 ml-1 list-group-item" action="/afterSignup" method="post">
+<h1>CREAR NUEVO USUARIO</h1><br>
 @csrf
   <!-- 2 column grid layout with text inputs for the first and last names -->
-  <div class="row mb-2">
-    <div class="col-2">
+  <div class="row col-12 mb-2">
+    <div class="col-4">
       <div class="form-outline">
-      <label class="form-label" for="form6Example1">Id</label>
-        <input type="text" name="user_id" class="form-control" value= "" />
+      <label class="form-label" for="form6Example2">Nombre de usuario: </label>
+        <input type="text" name="userName" class="form-control" value= "" />
       </div>
     </div>
-    <div class="col-2">
-      <div class="form-outline">
-      <label class="form-label" for="form6Example2">Nombre</label>
-        <input type="text" name="username" class="form-control" value= "" />
-      </div>
-    </div>
-  </div>
 
+  </div>
+  <div class="row col-12 mb-2">
+    <div class="col-4">
+      <div class="form-outline">
+      <label class="form-label" for="userPass">Contraseña:</label>
+        <input type="password" name="userPass" class="form-control" value= "" />
+      </div>
+      </div>
+    </div>
   <!-- 2 column grid layout with text inputs for the first and last names -->
-  <div class="row mb-4">
-    <div class="col-2">
+  <div class="row col-12 mb-4">
+
+    <div class="col-4">
       <div class="form-outline">
-      <label class="form-label" for="form6Example3">Password</label>
-        <input type="password" name="user_password" class="form-control" value= "" />
-      </div>
-    </div>
-    <div class="col-2">
-      <div class="form-outline">
-      <label class="form-label" for="form6Example4">Email</label>
-        <input type="email" name="email" class="form-control" value= "" />
+      <label class="form-label" for="emailUser">Email:</label>
+        <input type="email" name="emailUser" class="form-control" value= "" />
       </div>
     </div>
   </div>
 
-  <div class="form-outline mb-4 col-4">
-    <label class="form-label" for="form6Example7">Descripcion</label>
+  <div class="form-outline mb-4 col-6">
+    <label class="form-label" for="description">Descripción:</label>
     <textarea class="form-control" name="description" rows="4"></textarea>
   </div>
 
 
   <!-- Submit button -->
-  <button type="submit" name="save" class="btn btn-success btn-block mb-4">Guardar</button>
-  <button type="submit" name="cancel" class="btn btn-danger btn-block mb-4">Cancelar</button>
+  <div class="form-outline mb-4 col-4">
+  <button type="submit" name="singUp" class="btn btn-success btn-block mb-4">Registrar</button>
+  </div>
+
 </form>
-
-
 
 @endsection

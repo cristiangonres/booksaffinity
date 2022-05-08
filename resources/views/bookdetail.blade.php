@@ -4,6 +4,29 @@
 
 @section('content')
 
+<?php
+    if(session_status()==1){
+      session_start();
+    }
+
+    $admin=false;
+    $user=false;
+    $master=false;
+
+    if(isset($_SESSION["rol"])){
+      if($_SESSION["rol"] == "admin" ){
+        $admin=true;
+        $user=true;
+      }elseif($_SESSION["rol"] == "user"){
+        $user=true;
+      }elseif($_SESSION["rol"] == "master"){
+        $master=true;
+        $admin=true;
+        $user=true;
+      }
+    }
+    ?>
+
     <div class="m-4 p-2 shadow rounded border-bottom container border-top d-flex col-md-12 flex-shrink-0">
     <div class="row">
         <div class="col-md-3">
@@ -60,10 +83,13 @@
                         ?>
 
                 </span>
-
-                <p>
+                <?php
+                if($user){
+                    echo '                <p>
                     <button class="btn btn-round btn-primary" type="button"><i class="fa fa-star"></i> Añadir a favoritos</button>
-                </p>
+                </p>';
+                }
+                ?>
             </div>
 
         </div>
@@ -88,7 +114,12 @@
 
                 </span>
 
-                <button class="btn btn-round btn-primary m-2" type="button" onclick="add_coment()">Añadir comentario</button>
+                <?php
+                if($user){
+                    echo '<button class="btn btn-round btn-primary m-2" type="button" onclick="add_coment()">Añadir comentario</button>';
+                }
+                ?>
+                
         </div>
 
         <div class="col-12">
@@ -115,15 +146,15 @@
             <div class="col-12">
                 <h4> Introduce un nuevo comentario: </h4>
                 <div class="row m-1 p-1 col-12">
-                <div class="m-1 p-1 col-5">
-                    <label class="form-label" for="title">Titulo: </label>
-                    <input type="text" name="title" class="form-control" value='' required />
-            </div>
-            <div class="m-1 p-1 col-2">
-            </div>
-            <div class="m-1 p-1 col-2">
-                    <label class="form-label" for="rate">Valoración: </label>
-                    <input type="number" class="form-control" name="rate" min="0" max="10"/>
+                    <div class="m-1 p-1 col-5">
+                            <label class="form-label" for="title">Titulo: </label>
+                            <input type="text" name="title" class="form-control" value='' required />
+                    </div>
+                    <div class="m-1 p-1 col-2">
+                    </div>
+                    <div class="m-1 p-1 col-2">
+                        <label class="form-label" for="rate">Valoración: </label>
+                        <input type="number" class="form-control" name="rate" min="0" max="10"/>
                     </div>
 
                 </div>
@@ -158,13 +189,16 @@ let comment="";
             }
         }
         for ($i = 0; $i < $n; $i++) {
-            if($userData[$i]["user_id"]==$_SESSION['user_id']){
-            echo "comented= true;";
-            echo "username = '".$userData[$i]["username"]."';";
-            echo "rate = '".$userData[$i]["rate"]."';";
-            echo "title = '".$userData[$i]["title_review"]."';";
-            echo "comment = '".$userData[$i]["review"]."';";
+            if(isset($_SESSION['user_id'])){
+                if($userData[$i]["user_id"]==$_SESSION['user_id']){
+                    echo "comented= true;";
+                    echo "username = '".$userData[$i]["username"]."';";
+                    echo "rate = '".$userData[$i]["rate"]."';";
+                    echo "title = '".$userData[$i]["title_review"]."';";
+                    echo "comment = '".$userData[$i]["review"]."';";
+                }
             }
+
         }
 
     ?>
@@ -326,11 +360,9 @@ echo '<div class="m-4 p-2 shadow rounded border-bottom container border-top d-fl
         </div>
 
 
-    </div>
-
-
-</div>';
+        </div>    </div>';
 }
 ?>
+
 
 @endsection

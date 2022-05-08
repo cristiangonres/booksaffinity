@@ -46,11 +46,7 @@
         $admin=true;
         $user=true;
       }
-
-        
-
     }
-
     ?>
 
     <body>
@@ -84,25 +80,24 @@
 					<a href="#" class="dropdown-item">Drama</a>
 					<a href="#" class="dropdown-item">Suspense</a>
 				</div>
-            </div>
+      </div>
 			<a href="#" class="nav-item nav-link text-success" hidden>Favoritos</a>
 			<a href="#" class="nav-item nav-link text-success">Top 2022</a>
       <a href="#" class="nav-item nav-link text-success">Novedades</a>
 			<a href="#" class="nav-item nav-link text-success">Contacto</a>
+      
+      <div>
+      <form class="navbar-form form-inline search-form" method="GET" action="/home">
+        <div class="input-group">
+          <input type="text" class="form-control" name="search" placeholder="Search...">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+          </span>
         </div>
-        <div>
-		<form class="navbar-form form-inline search-form" method="GET" action="/home">
-			<div class="input-group">
-				<input type="text" class="form-control" name="search" placeholder="Search...">
-				<span class="input-group-btn">
-					<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-				</span>
-			</div>
+      </form>
       </div>
-		</form>
-    </div>
 
-    <div class="navbar-nav">
+    
 			<div class="nav-item dropdown login-dropdown ">
 				<a href="#" data-toggle="dropdown" class="nav-item nav-link text-success dropdown-toggle" aria-expanded="false"><i class="fa fa-user-o"></i>
         <?php
@@ -148,11 +143,12 @@
 
     ?>
             </form>
-          </div>
+          
          </div>
-         </div>
-
+      </div>
+      </div>
 	</div>
+  </div>
 </nav>
 
     <div class="row">
@@ -290,6 +286,13 @@ if (!$user){
     <p class="text-center text-muted">© 2021 Company, Inc</p>
   </footer>
 </div>
+
+<?php
+      if(isset($_SESSION["logued"])){
+        echo $_SESSION["logued"];
+        $_SESSION["logued"]="";
+      }
+?>
 
 
 </html>
