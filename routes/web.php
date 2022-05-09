@@ -87,7 +87,7 @@ Route::get('/signin', function () {
     return view('signin');
 });
 
-Route::post('/afterEditUser', [UserController::class, 'editORdeleteUser']);
+Route::post('/userPanel', [UserController::class, 'editORdeleteUser']);
 
 /*Route::get('/moderatexx', function () {
     return view('moderatexx');

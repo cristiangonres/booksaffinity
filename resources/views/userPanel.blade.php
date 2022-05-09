@@ -8,7 +8,7 @@
 
 
 
-    <form id="original" class="p-5 ml-1 list-group-item" action="/afterEditUser/" method="post">
+    <form id="original" class="p-5 ml-1 list-group-item" action="/userPanel" method="post">
 
     @csrf
     <div class="row col-12 mb-2">
@@ -161,7 +161,7 @@ function edit_comment(book_title, title, rate, comment) {
 
 
 <?php
-
+if(isset($userData)){
 $n = count($userData);
 
 for ($i = 0; $i < $n; $i++) {
@@ -214,6 +214,7 @@ echo '<div class="m-4 p-2 shadow rounded border-bottom container border-top d-fl
 
 
         </div>    </div>';
+}
 }
 ?>
 

@@ -144,7 +144,9 @@ class UserController extends Controller
     }
 
     function profile(){
-        session_start();
+        if(session_status()==1){
+            session_start();
+          }
         $userComments = AccountBook::where('account_id', $_SESSION["user_id"])->get();
         $userData = array();
         $i=0;
@@ -203,7 +205,7 @@ class UserController extends Controller
 
             $userDB=Account::where('id', $_SESSION["user_id"])->get();
 
-            return view('userPanel', compact('userDB'));
+            return $this->profile();
 
         }elseif($_POST['button'] == "delete"){
 
@@ -234,18 +236,21 @@ class UserController extends Controller
 
                     $userDB=Account::where('id', $_SESSION["user_id"])->get();
 
-                    return view('userPanel', compact('userDB'));
+                    return $this->profile();
                 }
+
+                $message = '<script language="javascript">alert("La contraseña actual no es correcta")</script>';
+                $_SESSION["logued"]=$message;
+    
+                return $this->profile();
 
             }
 
             
-            $message = '<script language="javascript">alert("Las contraseñas no coinciden")</script>';
+            $message = '<script language="javascript">alert("La contraseña no esta bien formada")</script>';
             $_SESSION["logued"]=$message;
 
-            $userDB=Account::where('id', $_SESSION["user_id"])->get();
-
-            return view('userPanel', compact('userDB'));
+            return $this->profile();
         }
     }
 }

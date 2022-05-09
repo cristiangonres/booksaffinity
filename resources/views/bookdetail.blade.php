@@ -350,12 +350,14 @@ echo '<div class="m-4 p-2 shadow rounded border-bottom container border-top d-fl
         <div class="col-3 align-self-end">
         <strong>Fecha publicación: </strong> <span class="amount-old">'.$userData[$i]["date_review"].'</span>
         </div>';
+        if(isset($_SESSION["user_id"])){
 
-        if($_SESSION["user_id"] == $userData[$i]["user_id"] ){
+            if($_SESSION["user_id"] == $userData[$i]["user_id"] ){
             echo '<div class="col-1 align-self-center">
             <button type="button" class="btn btn-default btn-sm" onclick="add_coment()">
             <span class="glyphicon glyphicon-edit"></span> Editar
             </button></div>';
+            }
         }
 
 
