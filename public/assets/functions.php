@@ -112,6 +112,13 @@ function filtering()
                     }
                 }
             }
+        }elseif($_POST['yearDesde']!=""  && $_POST['yearHasta']!=""){
+            foreach($books as $book){
+                $datebook = date("Y", strtotime($book->publi_date));
+                    if( $datebook >= $_POST['yearDesde'] && $datebook <= $_POST['yearHasta']) {
+                        array_push($array, $book);
+                    }
+                }
         }elseif ( $_POST['category']!=""){
             foreach($books as $book){
                 $ngen = count($book->genres);
