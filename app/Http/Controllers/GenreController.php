@@ -24,6 +24,6 @@ class GenreController extends Controller
 
         }])->get();
 
-        return view('booksbygenre', compact('books'));
+        return view('booksbygenre', compact('books', 'id'));
     }
 }
