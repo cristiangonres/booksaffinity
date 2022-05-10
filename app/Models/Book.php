@@ -15,7 +15,7 @@ class Book extends Model
 
     public function genres()
     {
-        return $this->belongsToMany(Genre::class)->withPivot('book_id');
+        return $this->belongsToMany(Genre::class)->withPivot('book_id', 'genre_id')->using(BookGenre::class);
     }
 
     public function accounts()
