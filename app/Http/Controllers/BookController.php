@@ -85,6 +85,10 @@ class BookController extends Controller
     function addComment($idBook, Request $request){
         session_start();
 
+
+
+        if($_SESSION['rol'] != "admin"){
+
         $findComment = AccountBook::where('account_id', $_SESSION['user_id'])
         ->where('book_id', $idBook)
         ->first();
@@ -116,6 +120,31 @@ class BookController extends Controller
         $bcDetail = $this->bookdetail($idBook);
 
         return $bcDetail;
+        } else {
+
+            $findComment = AccountBook::where('account_id', $request->get("userid"))
+            ->where('book_id', $idBook)
+            ->first();
+    
+            if($findComment!=''){
+    
+                $findComment->account_id = $request->get("userid");
+                $findComment->book_id = $idBook;
+                $findComment->rate = $request->get("rate");
+                $findComment->title_review= $request->get("title");
+                $findComment->review = $request->get("comment");
+                $findComment->date_review = date('Y-m-d');
+                $findComment->save();
+            }
+
+            $bc = new BookController();
+            $bcDetail = $this->bookdetail($idBook);
+
+            return $bcDetail;
+
+        }
+
+
     }
 
 }
