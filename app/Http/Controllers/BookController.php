@@ -85,7 +85,7 @@ class BookController extends Controller
     function addComment($idBook, Request $request){
         session_start();
 
-
+        if(isset($_POST["save"])){
 
         if($_SESSION['rol'] != "admin"){
 
@@ -143,7 +143,38 @@ class BookController extends Controller
             return $bcDetail;
 
         }
+    }elseif(isset($_POST["deleteComment"])){
 
+        if($_SESSION['rol'] != "admin"){
+
+            $findComment = AccountBook::where('account_id', $_SESSION['user_id'])
+            ->where('book_id', $idBook)
+            ->first();
+
+            $findComment->delete();
+
+            $bc = new BookController();
+            $bcDetail = $this->bookdetail($idBook);
+
+            return $bcDetail;
+        }else{
+
+            $findComment = AccountBook::where('account_id', $request->get("userid"))
+            ->where('book_id', $idBook)
+            ->first();
+            
+            $findComment->delete();
+
+            $bc = new BookController();
+            $bcDetail = $this->bookdetail($idBook);
+
+            return $bcDetail;
+        }
+
+
+
+    }
+    
 
     }
 
