@@ -149,15 +149,23 @@ class UserController extends Controller
         ->where('book_id', $idBook)
         ->first();
 
-        if($findComment!=''){
+        if(isset($_POST["save"])){
 
-            $findComment->account_id = $_SESSION["user_id"];
-            $findComment->book_id = $idBook;
-            $findComment->rate = $request->get("rate");
-            $findComment->title_review= $request->get("title");
-            $findComment->review = $request->get("comment");
-            $findComment->date_review = date('Y-m-d');
-            $findComment->save();
+            if($findComment!=''){
+
+                $findComment->account_id = $_SESSION["user_id"];
+                $findComment->book_id = $idBook;
+                $findComment->rate = $request->get("rate");
+                $findComment->title_review= $request->get("title");
+                $findComment->review = $request->get("comment");
+                $findComment->date_review = date('Y-m-d');
+                $findComment->save();
+
+            }
+
+        }elseif(isset($_POST["deleteComment"])){
+
+            $findComment->delete();
 
         }
 
@@ -173,6 +181,8 @@ class UserController extends Controller
         $userComments = AccountBook::where('account_id', $_SESSION["user_id"])->get();
         $userData = array();
         $i=0;
+        
+
         foreach($userComments as $comment){
             $book = Book::where('id', $comment["book_id"])->get();
             $userData[$i]["rate"] = $comment["rate"];

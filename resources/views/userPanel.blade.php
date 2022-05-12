@@ -130,6 +130,12 @@ function edit_comment(book_title, bookid, title, rate, comment) {
     but.setAttribute("class", "btn btn-success btn-block mb-4 col-3");
     but.innerHTML="Guardar comentario";
 
+    butE = document.createElement('button');
+    butE.setAttribute("type", "sumbit");
+    butE.setAttribute("name", "deleteComment");
+    butE.setAttribute("class", "btn btn-danger btn-block mb-4 col-3");
+    butE.innerHTML="Eliminar comentario";
+
 
     inDiv1.appendChild(lab);
     inDiv1.appendChild(inp);
@@ -147,6 +153,7 @@ function edit_comment(book_title, bookid, title, rate, comment) {
     form.appendChild(div1);
     form.appendChild(div2);
     form.appendChild(but);
+    form.appendChild(butE);
 
     div.appendChild(form).scrollIntoView();
 
