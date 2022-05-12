@@ -54,7 +54,7 @@
 </form>
 
 <script>
-function edit_comment(book_title, title, rate, comment) {
+function edit_comment(book_title, bookid, title, rate, comment) {
 
 
 
@@ -75,7 +75,7 @@ function edit_comment(book_title, title, rate, comment) {
     form = document.createElement('form');
     form.setAttribute("class","p-4 ml-1 border-0 list-group-item");
     form.setAttribute("method","post");
-    form.setAttribute("action","/userPanel/"+book_title);
+    form.setAttribute("action","/userPanel/"+bookid);
 
     oForm = document.getElementById("original");
     iValue= oForm.firstElementChild.getAttribute("value");
@@ -194,7 +194,7 @@ echo '<div class="m-4 p-2 shadow rounded border-bottom container border-top d-fl
 
         
         echo '<div class="col-1 align-self-center">
-        <button type="button" class="btn btn-default btn-sm" onclick='."'".'edit_comment("'.$userData[$i]["book_title"].'", "'.$userData[$i]["title_review"].'", '.$userData[$i]["rate"].', "'.$userData[$i]["review"].'"'.')'."'".'>
+        <button type="button" class="btn btn-default btn-sm" onclick='."'".'edit_comment("'.$userData[$i]["book_title"].'", "'.$userData[$i]["book_id"].'", "'.$userData[$i]["title_review"].'", '.$userData[$i]["rate"].', "'.$userData[$i]["review"].'"'.')'."'".'>
         <span class="glyphicon glyphicon-edit"></span> Editar
         </button></div>';
         

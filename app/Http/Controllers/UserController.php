@@ -139,7 +139,30 @@ class UserController extends Controller
         }
     }
 
-    function editComment($title){
+    function editComment($idBook, Request $request){
+
+        if(session_status()==1){
+            session_start();
+          }
+
+        $findComment = AccountBook::where('account_id', $_SESSION['user_id'])
+        ->where('book_id', $idBook)
+        ->first();
+
+        if($findComment!=''){
+
+            $findComment->account_id = $_SESSION["user_id"];
+            $findComment->book_id = $idBook;
+            $findComment->rate = $request->get("rate");
+            $findComment->title_review= $request->get("title");
+            $findComment->review = $request->get("comment");
+            $findComment->date_review = date('Y-m-d');
+            $findComment->save();
+
+        }
+
+        return $this->profile();
+
 
     }
 
@@ -158,6 +181,7 @@ class UserController extends Controller
             $userData[$i]["review"] = $comment["review"];
             $userData[$i]["score"] = $book[0]["score"];
             $userData[$i]["book_title"] = $book[0]["title"];
+            $userData[$i]["book_id"] = $comment["book_id"];
 
             $nrate = count($book[0]["accounts"]);
             $ncoments=0;
