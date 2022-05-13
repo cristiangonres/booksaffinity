@@ -51,7 +51,7 @@
         $year = date('Y', strtotime($book["0"]["publi_date"]));
         $nauth = count($book["0"]["authors"]);
         for ($i = 0; $i < $nauth; $i++) {
-            echo '<a href="/author/' . $book["0"]["authors"][$i]['id'] . '"  style="text-decoration:none" class="link-dark"> ' . $book["0"]["authors"][$i]["author_name"]
+            echo '<a href="/author/' . $book["0"]["authors"][$i]['id'] . '"  class="link-primary"> ' . $book["0"]["authors"][$i]["author_name"]
                . ' </a>';
             if ($nauth > 1 && $i < $nauth - 1) {
                 echo 'y';
@@ -61,13 +61,13 @@
                 ?>
 
             </span> </div>
-            <div class="m-bot15"> <strong>Título Original : </strong> <span class="amount-old">{{$book["0"]["original_title"]}}</span> </div>
-            <div class="m-bot15"> <strong>Fecha publicación : </strong> <span class="amount-old"><a href="/booksbyyear/{{$year}}"> {{$book["0"]["publi_date"]}}</a></span> </div>
-            <div class="m-bot15"> <strong>Pais : </strong> <span class="amount-old"><a href="/countrybook/{{ $book['0']['country_id'] }}"> {{$book["0"]["country"]['country_name']}}</a></span> </div>
-            <div class="m-bot15"> <strong>Editorial : </strong> <span class="amount-old"></span> </div>
+            <div class="m-bot15"> <strong>Título Original : </strong> <span class="amount-old" >{{$book["0"]["original_title"]}}</span> </div>
+            <div class="m-bot15"> <strong>Fecha publicación : </strong> <span class="amount-old"><a href="/booksbyyear/{{$year}}" class="link-primary"> {{$book["0"]["publi_date"]}}</a></span> </div>
+            <div class="m-bot15"> <strong>Pais : </strong> <span class="amount-old"><a href="/countrybook/{{ $book['0']['country_id'] }}" class="link-primary"> {{$book["0"]["country"]['country_name']}}</a></span> </div>
+           <!-- <div class="m-bot15"> <strong>Editorial : </strong> <span class="amount-old"></span> </div> -->
             <div class="m-bot15"> <strong>Paginas : </strong> <span class="amount-old">{{$book["0"]["pages"]}}</span> </div>
-            <div class="m-bot15"> <strong>Tipo : </strong> <span class="amount-old"></span> </div>
-            <div class="m-bot15"> <strong>ISBN : </strong> <span class="amount-old"></span> </div>
+    <!-- <div class="m-bot15"> <strong>Tipo : </strong> <span class="amount-old"></span> </div>
+            <div class="m-bot15"> <strong>ISBN : </strong> <span class="amount-old"></span> </div> -->
 
             <div class="product_meta">
                 <span class="posted_in"> <strong>Categorias:</strong>
@@ -75,7 +75,7 @@
 
                         $ngen = count($book["0"]["genres"]);
                         for ($i = 0; $i < $ngen; $i++) {
-                            echo '<a href="/genre/' . $book["0"]["genres"][$i]['id'] . '" style="text-decoration:none" class="link-info"> ' . $book["0"]["genres"][$i]['genre_name'] . '</a>';
+                            echo '<a href="/genre/' . $book["0"]["genres"][$i]['id'] . '"  class="link-info"> ' . $book["0"]["genres"][$i]['genre_name'] . '</a>';
                             if ($ngen > 1 && $i < $ngen - 1) {
                                 echo ',';
                             }
@@ -84,7 +84,7 @@
 
                 </span>
                 <?php
-                if($user){
+                if($user && false){
                     echo '                <p>
                     <button class="btn btn-round btn-primary" type="button"><i class="fa fa-star"></i> Añadir a favoritos</button>
                 </p>';

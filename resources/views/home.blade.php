@@ -85,26 +85,26 @@ input[type="radio"]:checked ~ label {
 
                 <div class="col-6">
                 <ul class="list-unstyled">
-                <li>Titulo: <a href="/book/' . $book->id . '" style="text-decoration:none" class="link-dark">' . $book->title .'</a></li>
+                <li class="h4">Titulo: <strong><a href="/book/' . $book->id . '"  class="link-dark">' . $book->title .'</a></strong></li>
                 <li>Autor:';
                 $nauth = count($book->authors);
                 for ($i = 0; $i < $nauth; $i++) {
-                    echo '<a href="/author/' . $book->authors[$i]['id'] . '"  style="text-decoration:none" class="link-dark"> ' . $book->authors[$i]['author_name'] . ' </a>';
+                    echo '<a href="/author/' . $book->authors[$i]['id'] . '"  class="link-dark"> ' . $book->authors[$i]['author_name'] . ' </a>';
                     if ($nauth > 1 && $i < $nauth - 1) {
                         echo 'y';
                     }
                 }
                 echo '</li>
 
-                <li>Año: <a href="/booksbyyear/'.$year.'" style="text-decoration:none" class="link-dark">' .
+                <li>Año: <a href="/booksbyyear/'.$year.'"  class="link-dark">' .
                     $year .
                     '</a></li>
-                <li>Pais: <a href="/countrybook/' . $book->country['id'] . '" style="text-decoration:none" class="link-dark">' . $book->country['country_name'] . '</a></li>
+                <li>Pais: <a href="/countrybook/' . $book->country['id'] . '"  class="link-dark">' . $book->country['country_name'] . '</a></li>
 
                 <li>Generos:';
                 $ngen = count($book->genres);
                 for ($i = 0; $i < $ngen; $i++) {
-                    echo '<a href="/genre/' . $book->genres[$i]['id'] . '" style="text-decoration:none" class="link-info"> ' . $book->genres[$i]['genre_name'] . '</a>';
+                    echo '<a href="/genre/' . $book->genres[$i]['id'] . '" class="link-info"> ' . $book->genres[$i]['genre_name'] . '</a>';
                     if ($ngen > 1 && $i < $ngen - 1) {
                         echo ',';
                     }

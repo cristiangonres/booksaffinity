@@ -71,19 +71,19 @@
 	<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
 		<div class="navbar-nav">
 			<a href="/" class="nav-item nav-link text-success">Home</a>
-			<a href="#" class="nav-item nav-link text-success">Mi Perfil</a>
-			<div class="nav-item dropdown">
-				<a href="#" data-toggle="dropdown" class="nav-item nav-link text-success dropdown-toggle">Generos</a>
+			<a href="/userPanel" class="nav-item nav-link text-success">Mi Perfil</a>
+		<!--		<div class="nav-item dropdown">
+			<a href="#" data-toggle="dropdown" class="nav-item nav-link text-success dropdown-toggle">Generos</a>
 				<div class="dropdown-menu">
 					<a href="#" class="dropdown-item">Terror</a>
 					<a href="#" class="dropdown-item">Fantastico</a>
 					<a href="#" class="dropdown-item">Drama</a>
 					<a href="#" class="dropdown-item">Suspense</a>
 				</div>
-      </div>
+      </div> 
 			<a href="#" class="nav-item nav-link text-success" hidden>Favoritos</a>
 			<a href="#" class="nav-item nav-link text-success">Top 2022</a>
-      <a href="#" class="nav-item nav-link text-success">Novedades</a>
+      <a href="#" class="nav-item nav-link text-success">Novedades</a> -->
 			<a href="#" class="nav-item nav-link text-success">Contacto</a>
       
       <div>
@@ -164,6 +164,19 @@
           Home
         </a>
       </li>
+      <?php
+      if($user){
+        echo '<li>
+        <a href="/userPanel" class="nav-link text-success">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+          Mi Perfil
+        </a>
+      </li>'
+      ;
+      
+      }
+      ?>
+
       <li>
         <a href="/authors" class="nav-link text-success">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
@@ -205,26 +218,8 @@ if ($admin){
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
               Editar Editorial
             </a>
-          </li>'.
-          '<li>
-            <a href="/moderatexx" class="nav-link text-success">
-              <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-              Moderar
-            </a>
           </li>'
           ;
-}
-
-if($user){
- echo '<li>
-  <a href="/userPanel" class="nav-link text-success">
-    <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-    Mi Perfil
-  </a>
-</li>'
-;
-
-
 }
 
 ?>
